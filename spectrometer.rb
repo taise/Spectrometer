@@ -2,7 +2,9 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'slim'
 
-require './models/stv_wlm_service_class_state'
+$LOAD_PATH << './models'
+require 'redshift'
+require 'stv_wlm_service_class_state'
 
 class Spectrometer < Sinatra::Base
   configure :development do
@@ -14,7 +16,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/service_class_states' do
-    p @service_class_states = StvWlmServiceClassState.all
+     @service_class_states = StvWlmServiceClassState.all
     slim :service_class_state
   end
 end
