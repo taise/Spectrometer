@@ -8,3 +8,5 @@ gem 'sinatra-contrib', '~> 1.4'
 
 gem 'activerecord', '~> 4.2'
 gem 'activerecord4-redshift-adapter', '~> 0.2.1'
+
+gem 'slim'
