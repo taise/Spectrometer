@@ -3,7 +3,7 @@ html
   head
     title Spectrometer
   body
-    h1 WLM query queue state
+    h1 pg_user list
     table
       thead
         tr
@@ -18,5 +18,5 @@ html
             td = user.userid
             td = user.usename
             td = user.count_query
-            td = user.started_at.getlocal
-            td = user.last_at.getlocal
+            td = user.started_at.local_timestamp
+            td = user.last_at.local_timestamp

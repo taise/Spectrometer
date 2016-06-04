@@ -2,6 +2,8 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'slim'
 
+require './lib/time'
+
 $LOAD_PATH << './models'
 require 'redshift'
 require 'stv_wlm_service_class_state'
