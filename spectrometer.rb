@@ -6,8 +6,9 @@ require './lib/time'
 
 $LOAD_PATH << './models'
 require 'redshift'
-require 'stv_wlm_service_class_state'
 require 'pg_user'
+require 'stl_error'
+require 'stv_wlm_service_class_state'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -28,5 +29,10 @@ class Spectrometer < Sinatra::Base
   get '/users' do
     @users = PgUser.find_with_summary
     slim :users
+  end
+
+  get '/errors' do
+    @errors = StlError.find_join_user
+    slim :errors
   end
 end
