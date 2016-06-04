@@ -5,7 +5,7 @@ class PgUser < Redshift
     sql = <<'EOS'
 SELECT
   userid::INTEGER,
-  usename::VARCHAR,
+  TRIM(usename) AS usename,
   COUNT(*) AS count_query,
   MIN(starttime) AS started_at,
   MAX(starttime) AS last_at
