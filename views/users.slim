@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title Spectrometer
+  body
+    h1 WLM query queue state
+    table
+      thead
+        tr
+          th userid
+          th usename
+          th count_query
+          th started_at
+          th last_at
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.userid
+            td = user.usename
+            td = user.count_query
+            td = user.started_at.getlocal
+            td = user.last_at.getlocal
