@@ -1,24 +1,27 @@
 doctype html
 html
   head
-    title Spectrometer
+    == slim :head
   body
-    h1 WLM query queue state
-    table
-      thead
-        tr
-          th service_class
-          th num_queued_queries
-          th num_executing_queries
-          th num_serviced_queries
-          th num_executed_queries
-          th num_evicted_queries
-      tbody
-        - @service_class_states.each do |state|
-          tr
-            td = state.service_class
-            td = state.num_queued_queries
-            td = state.num_executing_queries
-            td = state.num_serviced_queries
-            td = state.num_executed_queries
-            td = state.num_evicted_queries
+    == slim :hero
+    section class='section'
+      div class='container'
+        h1 WLM query queue state
+        table
+          thead
+            tr
+              th service_class
+              th num_queued_queries
+              th num_executing_queries
+              th num_serviced_queries
+              th num_executed_queries
+              th num_evicted_queries
+          tbody
+            - @service_class_states.each do |state|
+              tr
+                td = state.service_class
+                td = state.num_queued_queries
+                td = state.num_executing_queries
+                td = state.num_serviced_queries
+                td = state.num_executed_queries
+                td = state.num_evicted_queries

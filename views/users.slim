@@ -1,22 +1,25 @@
 doctype html
 html
   head
-    title Spectrometer
+    == slim :head
   body
-    h1 pg_user list
-    table
-      thead
-        tr
-          th userid
-          th usename
-          th count_query
-          th started_at
-          th last_at
-      tbody
-        - @users.each do |user|
-          tr
-            td = user.userid
-            td = user.usename
-            td = user.count_query
-            td = user.started_at.local_timestamp
-            td = user.last_at.local_timestamp
+    == slim :hero
+    section class='section'
+      div class='container'
+        h1 pg_user list
+        table
+          thead
+            tr
+              th userid
+              th usename
+              th count_query
+              th started_at
+              th last_at
+          tbody
+            - @users.each do |user|
+              tr
+                td = user.userid
+                td = user.usename
+                td = user.count_query
+                td = user.started_at.local_timestamp
+                td = user.last_at.local_timestamp

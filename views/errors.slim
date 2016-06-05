@@ -1,24 +1,27 @@
 doctype html
 html
   head
-    title Spectrometer
+    == slim :head
   body
-    h1 WLM query queue state
-    table
-      thead
-        tr
-          th userid
-          th username
-          th recordtime
-          th errcode
-          th context
-          th error_message
-      tbody
-        - @errors.each do |error|
-          tr
-            td = error.userid
-            td = error.username
-            td = error.recordtime.local_timestamp
-            td = error.errcode
-            td = error.context
-            td = error.error_message
+    == slim :hero
+    section class='section'
+      div class='container'
+        h1 WLM query queue state
+        table
+          thead
+            tr
+              th userid
+              th username
+              th recordtime
+              th errcode
+              th context
+              th error_message
+          tbody
+            - @errors.each do |error|
+              tr
+                td = error.userid
+                td = error.username
+                td = error.recordtime.local_timestamp
+                td = error.errcode
+                td = error.context
+                td = error.error_message

@@ -1,13 +1,16 @@
 doctype html
 html
   head
-    title Spectrometer
+    == slim :head
   body
-    h1 Index
-    ul
-      li
-        a href='/service_class_states' WLM Queue state
-      li
-        a href='/users' User list
-      li
-        a href='/errors' Error list
+    == slim :hero
+    section class='section'
+      div class='container'
+        h1 Index
+        ul
+          li
+            a href='/service_class_states' WLM Queue state
+          li
+            a href='/users' User list
+          li
+            a href='/errors' Error list
