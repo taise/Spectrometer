@@ -1,31 +1,20 @@
-doctype html
-html
-  head
-    == slim :head
-  body
-    == slim :hero
-    section class='section'
-      div class='container'
-        div class='columns'
-          div class=['column', 'is-one-quarter']
-            == slim :menu
-          div class='column'
-            h1 class=['title', 'is-3'] STL Error
-            table class='table'
-              thead
-                tr
-                  th userid
-                  th username
-                  th recordtime
-                  th errcode
-                  th context
-                  th error_message
-              tbody
-                - @errors.each do |error|
-                  tr
-                    td = error.userid
-                    td = error.username
-                    td = error.recordtime.local_timestamp
-                    td = error.errcode
-                    td = error.context
-                    td = error.error_message
+div class='column'
+  h1 class=['title', 'is-3'] STL Error
+  table class='table'
+    thead
+      tr
+        th userid
+        th username
+        th recordtime
+        th errcode
+        th context
+        th error_message
+    tbody
+      - @errors.each do |error|
+        tr
+          td = error.userid
+          td = error.username
+          td = error.recordtime.local_timestamp
+          td = error.errcode
+          td = error.context
+          td = error.error_message
