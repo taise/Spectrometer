@@ -10,7 +10,6 @@ AWS Redshift monitoring web console.
 
 ## TODO
 
-* Applying style
 * Metrics dashboard from AWS CloudWatch
 * Check slow query & notification
 * Chack overflowing WLM queue & notification
