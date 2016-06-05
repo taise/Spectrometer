@@ -4,4 +4,14 @@ AWS Redshift monitoring web console.
 
 ## Features
 
-* WLM queue view.
+* WLM queue state
+* pg_user list
+* error list
+
+## TODO
+
+* Applying style
+* Metrics dashboard from AWS CloudWatch
+* Check slow query & notification
+* Chack overflowing WLM queue & notification
+* Authentication
