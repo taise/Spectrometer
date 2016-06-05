@@ -6,11 +6,8 @@ html
     == slim :hero
     section class='section'
       div class='container'
-        h1 Index
-        ul
-          li
-            a href='/service_class_states' WLM Queue state
-          li
-            a href='/users' User list
-          li
-            a href='/errors' Error list
+        div class='columns'
+          div class=['column', 'is-one-quarter']
+            == slim :menu
+          div class='column'
+            p top
