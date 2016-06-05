@@ -14,3 +14,8 @@ AWS Redshift monitoring web console.
 * Check slow query & notification
 * Chack overflowing WLM queue & notification
 * Authentication
+
+## Issue
+
+* Redshift connection should be reset regulary
+  (because it will be connection bad)
