@@ -18,7 +18,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/' do
-    'Hello Spectrometer'
+    slim :index
   end
 
   get '/service_class_states' do
