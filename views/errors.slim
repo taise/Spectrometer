@@ -5,16 +5,16 @@ div class='column'
       tr
         th userid
         th username
+        th process
         th recordtime
         th errcode
-        th context
         th error_message
     tbody
       - @errors.each do |error|
         tr
           td = error.userid
           td = error.username
+          td = error.process
           td = error.recordtime.local_timestamp
           td = error.errcode
-          td = error.context
           td = error.error_message

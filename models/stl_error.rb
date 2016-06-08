@@ -2,6 +2,8 @@ class StlError < Redshift
   self.table_name = 'stl_error'
 
   def self.find_join_user
+    # errcode: 17
+    #   unrecognized configuration parameter "application_name"
     sql = <<'EOS'
 WITH users AS (
   SELECT
@@ -14,9 +16,9 @@ WITH users AS (
 SELECT
   se.userid,
   username,
+  process,
   recordtime,
   errcode,
-  TRIM(context) AS context,
   TRIM(error) AS error_message
 FROM
   pg_catalog.stl_error AS se
@@ -24,6 +26,7 @@ FROM
     ON se.userid = users.userid
 WHERE
   recordtime >= GETDATE() - INTERVAL '3 hour'
+  AND errcode != 17
 ORDER BY
   recordtime DESC
 LIMIT 30
