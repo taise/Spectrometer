@@ -1,2 +1,4 @@
+.bundle
+vendor/bundle
 tmp
 config/database.yml
