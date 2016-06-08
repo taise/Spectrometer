@@ -3,16 +3,16 @@ div class='column'
   table class='table'
     thead
       tr
-        th userid
-        th usename
+        th id
+        th name
         th count_query
         th started_at
         th last_at
     tbody
       - @users.each do |user|
         tr
-          td = user.userid
-          td = user.usename
+          td = user.id
+          td = user.name
           td = user.count_query
-          td = user.started_at.local_timestamp
-          td = user.last_at.local_timestamp
+          td = user.started_at&.local_timestamp
+          td = user.last_at&.local_timestamp
