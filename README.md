@@ -53,9 +53,3 @@ bundle install --path vendor/bundle
 bundle exec rackup
 ```
 
-
-## Issue
-
-* Redshift connection should be reset regulary
-  (because it will be connection bad)
-
