@@ -11,6 +11,14 @@ AWS Redshift monitoring web console.
 
 ## Roadmap
 
+### Next Architecture
+
+* Reads the data regularly from Redshift, write to sqlite3
+* Show the data read from sqlite3 with ActiveRecord
+
+
+### Next Features
+
 * Metrics dashboard from AWS CloudWatch
 * Check slow query & notification
 * Chack overflowing WLM queue & notification
