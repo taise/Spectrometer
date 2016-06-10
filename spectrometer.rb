@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'slim'
 
+require './lib/redshift_metric'
 require './lib/time'
 
 $LOAD_PATH << './models'
@@ -19,6 +20,12 @@ class Spectrometer < Sinatra::Base
 
   get '/' do
     slim :index
+  end
+
+  get '/performances' do
+    metrics = RedshiftMetric.new('CPUUtilization').get_statistics
+    @cpu_utilizations = metrics.datapoints.sort_by(&:timestamp)
+    slim :performances
   end
 
   get '/service_class_states' do

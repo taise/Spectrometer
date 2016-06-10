@@ -1,0 +1,15 @@
+div class='column'
+  h1 class=['title', 'is-3'] Performances
+  p updated at: #{Time.now.local_timestamp}
+
+  h2 CPUUtilization
+  table class='table'
+    thead
+      tr
+        th timestamp
+        th avg
+    tbody
+      - @cpu_utilizations.each do |metric|
+        tr
+          td = metric.timestamp.local_timestamp
+          td = metric.average.round(2)
