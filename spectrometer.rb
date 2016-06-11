@@ -24,8 +24,11 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/performances' do
-    metrics = RedshiftMetric.new('CPUUtilization').get_statistics
-    @performances = metrics.datapoints.sort_by(&:timestamp)
+    # TODO: async requests
+    @cpu = RedshiftMetric.new('CPUUtilization').get_statistics.datapoints
+    @disk = RedshiftMetric.new('PercentageDiskSpaceUsed').get_statistics.datapoints
+    @health = RedshiftMetric.new('HealthStatus').get_statistics.datapoints
+    @maintenance = RedshiftMetric.new('MaintenanceMode').get_statistics.datapoints
     slim :performances
   end
 

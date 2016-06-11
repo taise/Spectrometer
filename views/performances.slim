@@ -1,8 +1,18 @@
 div class='column'
+  script src='//www.google.com/jsapi'
+  script src='js/chartkick.js'
+
   h1 class=['title', 'is-3'] Performances
   p updated at: #{Time.now.local_timestamp}
 
-  h2 CPUUtilization
-  script src='//www.google.com/jsapi'
-  script src='js/chartkick.js'
-  == line_chart @performances.map {|dp| [dp.timestamp.local_timestamp, dp.average]}
+  h2 CPU Utilization
+  == line_chart @cpu.map {|dp| [dp.timestamp, dp.average]}
+
+  h2 Percentage Disk Space Used
+  == line_chart @disk.map {|dp| [dp.timestamp, dp.average]}
+
+  h2 Health Status
+  == line_chart @health.map {|dp| [dp.timestamp, dp.average]}
+
+  h2 Maintenance Mode
+  == line_chart @maintenance.map {|dp| [dp.timestamp, dp.average]}
