@@ -21,7 +21,6 @@ AWS Redshift monitoring web console.
 
 ### Next Features
 
-* Metrics dashboard from AWS CloudWatch
 * Check slow query & notification
 * Chack overflowing WLM queue & notification
 * Authentication
