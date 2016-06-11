@@ -5,14 +5,14 @@ div class='column'
   h1 class=['title', 'is-3'] Performance Dashboard
   p updated at: #{Time.now.local_timestamp}
 
-  h2 CPU Utilization
+  h2 class=['title', 'is-4'] CPU Utilization
   == line_chart @cpu
 
-  h2 Percentage Disk Space Used
+  h2 class=['title', 'is-4'] Percentage Disk Space Used
   == line_chart @disk
 
-  h2 Health Status
+  h2 class=['title', 'is-4'] Health Status
   == line_chart @health
 
-  h2 Maintenance Mode
+  h2 class=['title', 'is-4'] Maintenance Mode
   == line_chart @maintenance
