@@ -1,7 +1,9 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'slim'
+require 'chartkick'
 
+require './lib/redshift_metric'
 require './lib/time'
 
 $LOAD_PATH << './models'
@@ -19,6 +21,11 @@ class Spectrometer < Sinatra::Base
 
   get '/' do
     slim :index
+  end
+
+  get '/performances' do
+    # TODO: async requests to Aws::CloudWatch::Metric
+    slim :performances
   end
 
   get '/service_class_states' do
