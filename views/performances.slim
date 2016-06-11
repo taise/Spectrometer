@@ -6,13 +6,13 @@ div class='column'
   p updated at: #{Time.now.local_timestamp}
 
   h2 CPU Utilization
-  == line_chart @cpu.map {|dp| [dp.timestamp, dp.average]}
+  == line_chart @cpu
 
   h2 Percentage Disk Space Used
-  == line_chart @disk.map {|dp| [dp.timestamp, dp.average]}
+  == line_chart @disk
 
   h2 Health Status
-  == line_chart @health.map {|dp| [dp.timestamp, dp.average]}
+  == line_chart @health
 
   h2 Maintenance Mode
-  == line_chart @maintenance.map {|dp| [dp.timestamp, dp.average]}
+  == line_chart @maintenance

@@ -19,7 +19,7 @@ class RedshiftMetric
     @metric = Aws::CloudWatch::Metric.new(NAMESPACE, name)
   end
 
-  def get_statistics(args = {})
+  def get(args = {})
     @metric.get_statistics(
       start_time: args['start_time'] || 12.hours.ago,
       end_time: args['end_time']     || Time.now,
@@ -31,7 +31,7 @@ class RedshiftMetric
           value: DIMENSION_VALUE
         }
       ]
-    )
+    ).datapoints
   end
 
   def name=(name)
