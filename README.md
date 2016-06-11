@@ -2,6 +2,8 @@
 
 AWS Redshift monitoring web console.
 
+![screenshot](https://raw.githubusercontent.com/taise/Spectrometer/images/spectrometer_ss.png)
+
 ## Features
 
 * WLM queue state
