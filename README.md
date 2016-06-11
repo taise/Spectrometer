@@ -67,3 +67,6 @@ bundle install --path vendor/bundle
 bundle exec rackup
 ```
 
+## License
+
+MIT license
