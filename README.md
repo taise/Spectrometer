@@ -48,7 +48,13 @@ cd /path/to/project
 cp config/database.yml.sample config/database.yml
 ```
 
-3. Bundle install
+3. Set `config/aws.yml`
+
+```
+cp config/aws.yml.sample config/aws.yml
+```
+
+4. Bundle install
 
 ```
 gem install bundler
