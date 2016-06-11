@@ -34,6 +34,11 @@ class RedshiftMetric
     ).datapoints
   end
 
+  def average
+    # get Average statistics & return data matrix
+    get(statistics: ['Average']).map {|dp| [dp.timestamp, dp.average]}
+  end
+
   def name=(name)
     @metric = Aws::CloudWatch::Metric.new(NAMESPACE, name)
   end

@@ -25,10 +25,10 @@ class Spectrometer < Sinatra::Base
 
   get '/performances' do
     # TODO: async requests
-    @cpu = RedshiftMetric.new('CPUUtilization').get.map {|dp| [dp.timestamp, dp.average]}
-    @disk = RedshiftMetric.new('PercentageDiskSpaceUsed').get.map {|dp| [dp.timestamp, dp.average]}
-    @health = RedshiftMetric.new('HealthStatus').get.map {|dp| [dp.timestamp, dp.average]}
-    @maintenance = RedshiftMetric.new('MaintenanceMode').get.map {|dp| [dp.timestamp, dp.average]}
+    @cpu = RedshiftMetric.new('CPUUtilization').average
+    @disk = RedshiftMetric.new('PercentageDiskSpaceUsed').average
+    @health = RedshiftMetric.new('HealthStatus').average
+    @maintenance = RedshiftMetric.new('MaintenanceMode').average
     slim :performances
   end
 
