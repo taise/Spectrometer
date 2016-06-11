@@ -15,3 +15,4 @@ gem 'activesupport', '~> 4.2'
 gem 'slim'
 
 gem 'aws-sdk', '~> 2.3'
+gem 'chartkick'

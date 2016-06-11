@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'slim'
+require 'chartkick'
 
 require './lib/redshift_metric'
 require './lib/time'
@@ -24,7 +25,7 @@ class Spectrometer < Sinatra::Base
 
   get '/performances' do
     metrics = RedshiftMetric.new('CPUUtilization').get_statistics
-    @cpu_utilizations = metrics.datapoints.sort_by(&:timestamp)
+    @performances = metrics.datapoints.sort_by(&:timestamp)
     slim :performances
   end
 

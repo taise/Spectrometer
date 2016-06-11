@@ -12,9 +12,6 @@ Aws.config.update({
 })
 
 
-#class Mtc < Aws::CloudWatch::Metric; end
-
-
 class RedshiftMetric
 
   # TODO: Read from config/aws.yml
