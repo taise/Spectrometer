@@ -24,11 +24,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/performances' do
-    # TODO: async requests
-    @cpu = RedshiftMetric.new('CPUUtilization').average
-    @disk = RedshiftMetric.new('PercentageDiskSpaceUsed').average
-    @health = RedshiftMetric.new('HealthStatus').average
-    @maintenance = RedshiftMetric.new('MaintenanceMode').average
+    # TODO: async requests to Aws::CloudWatch::Metric
     slim :performances
   end
 
