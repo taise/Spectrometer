@@ -16,3 +16,7 @@ gem 'slim'
 
 gem 'aws-sdk', '~> 2.3'
 gem 'chartkick'
+
+group :development do
+  gem 'rubocop'
+end
