@@ -16,7 +16,7 @@ AllCops:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
-  Max: 101
+  Max: 80
 
 # Offense count: 3
 # Configuration parameters: CountComments.
