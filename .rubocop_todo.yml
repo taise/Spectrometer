@@ -7,11 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
-Lint/UselessAssignment:
-  Exclude:
-    - 'lib/aws_config.rb'
-
-# Offense count: 1
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
@@ -44,7 +39,6 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'lib/aws.rb'
     - 'lib/aws_config.rb'
     - 'lib/redshift_metric.rb'
     - 'lib/time.rb'
@@ -86,23 +80,8 @@ Style/IndentHash:
 # Cop supports --auto-correct.
 Style/RedundantSelf:
   Exclude:
-    - 'lib/aws.rb'
     - 'models/redshift.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: only_raise, only_fail, semantic
-Style/SignalException:
-  Exclude:
-    - 'lib/aws.rb'
-
-# Offense count: 1
-# Configuration parameters: Methods.
-# Methods: {"reduce"=>["a", "e"]}, {"inject"=>["a", "e"]}
-Style/SingleLineBlockParams:
-  Exclude:
-    - 'lib/aws.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

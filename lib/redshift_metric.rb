@@ -1,4 +1,4 @@
-require './lib/aws'
+require './lib/aws_config'
 require 'active_support'
 require 'active_support/core_ext'
 
