@@ -1,18 +1,14 @@
-require './lib/aws'
+# frozen_string_literal: true
+require './lib/aws_config'
 require 'active_support'
 require 'active_support/core_ext'
 
-
-Aws.config.update({
-  region: 'us-west-2',
-  credentials: AwsConfig.credentials
-})
-
+Aws.config.update(region: 'us-west-2',
+                  credentials: AwsConfig.credentials)
 
 class RedshiftMetric
-
-  NAMESPACE = 'AWS/Redshift'.freeze
-  DIMENSION_NAME = 'ClusterIdentifier'.freeze
+  NAMESPACE = 'AWS/Redshift'
+  DIMENSION_NAME = 'ClusterIdentifier'
   DIMENSION_VALUE = AwsConfig.cluster_identifier
 
   def initialize(name)
@@ -36,7 +32,7 @@ class RedshiftMetric
 
   def average
     # get Average statistics & return data matrix
-    get(statistics: ['Average']).map {|dp| [dp.timestamp, dp.average]}
+    get(statistics: ['Average']).map { |dp| [dp.timestamp, dp.average] }
   end
 
   def name=(name)
