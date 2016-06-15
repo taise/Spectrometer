@@ -12,30 +12,17 @@ AllCops:
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 80
 
-# Offense count: 3
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Max: 27
 
-# Offense count: 9
 Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'lib/aws_config.rb'
-    - 'lib/redshift_metric.rb'
-    - 'lib/time.rb'
-    - 'models/pg_user.rb'
-    - 'models/redshift.rb'
-    - 'models/stl_error.rb'
-    - 'models/stv_wlm_service_class_state.rb'
-    - 'spectrometer.rb'
+  Enabled: false
 
 Style/SingleLineBlockParams:
   Enabled: false
