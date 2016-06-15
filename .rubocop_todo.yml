@@ -36,3 +36,6 @@ Style/Documentation:
     - 'models/stl_error.rb'
     - 'models/stv_wlm_service_class_state.rb'
     - 'spectrometer.rb'
+
+Style/SingleLineBlockParams:
+  Enabled: false
