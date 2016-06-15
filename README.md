@@ -38,44 +38,43 @@ AWS Redshift monitoring web console.
 
 1. Clone Spectrometer
 
-```
-git clone https://github.com/taise/Spectrometer.git
-```
+  ```
+  git clone https://github.com/taise/Spectrometer.git
+  ```
 
 2. Set `config/database.yml`
 
-```
-cd /path/to/project
-cp config/database.yml.sample config/database.yml
-```
+  ```
+  cd /path/to/project
+  cp config/database.yml.sample config/database.yml
+  ```
 
 3. Set `config/aws.yml`
 
-```
-cp config/aws.yml.sample config/aws.yml
-```
+  ```
+  cp config/aws.yml.sample config/aws.yml
+  ```
 
 4. Bundle install
 
-```
-gem install bundler
-bundle install --path vendor/bundle
-```
+  ```
+  gem install bundler
+  bundle install --path vendor/bundle
+  ```
 
 5. Service start
 
-```
-bundle exec rackup -p 9292
-```
+  ```
+  bundle exec rackup -p 9292
+  ```
 
 6. Access
 
-[http://localhost:9292](http://localhost:9292)
-
+  [http://localhost:9292](http://localhost:9292)
 
 7. Login
 
-The login username/passwords, those `config/database.yml` is set.
+  The login username/passwords, those `config/database.yml` is set.
 
 
 ## License
