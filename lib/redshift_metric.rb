@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/aws_config'
 require 'active_support'
 require 'active_support/core_ext'
@@ -6,8 +7,8 @@ Aws.config.update(region: 'us-west-2',
                   credentials: AwsConfig.credentials)
 
 class RedshiftMetric
-  NAMESPACE = 'AWS/Redshift'.freeze
-  DIMENSION_NAME = 'ClusterIdentifier'.freeze
+  NAMESPACE = 'AWS/Redshift'
+  DIMENSION_NAME = 'ClusterIdentifier'
   DIMENSION_VALUE = AwsConfig.cluster_identifier
 
   def initialize(name)

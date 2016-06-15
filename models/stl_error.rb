@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StlError < Redshift
   self.table_name = 'stl_error'
 
