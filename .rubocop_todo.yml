@@ -23,7 +23,6 @@ Metrics/MethodLength:
 # SupportedStyles: braces, no_braces, context_dependent
 Style/BracesAroundHashParameters:
   Exclude:
-    - 'lib/redshift_metric.rb'
     - 'tmp/clowd_watch_metrics.rb'
 
 # Offense count: 9
@@ -39,20 +38,6 @@ Style/Documentation:
     - 'models/stl_error.rb'
     - 'models/stv_wlm_service_class_state.rb'
     - 'spectrometer.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/EmptyLines:
-  Exclude:
-    - 'lib/redshift_metric.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: empty_lines, no_empty_lines
-Style/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'lib/redshift_metric.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
