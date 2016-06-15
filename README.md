@@ -6,6 +6,7 @@ AWS Redshift monitoring web console.
 
 ## Features
 
+* Redshift performance metrics by AWS CloudWatch
 * WLM queue state
 * pg_user list
 * error list
@@ -23,7 +24,6 @@ AWS Redshift monitoring web console.
 
 * Check slow query & notification
 * Chack overflowing WLM queue & notification
-* Authentication
 
 
 ## Built With
@@ -62,11 +62,21 @@ gem install bundler
 bundle install --path vendor/bundle
 ```
 
-4. Service start
+5. Service start
 
 ```
-bundle exec rackup
+bundle exec rackup -p 9292
 ```
+
+6. Access
+
+[http://localhost:9292](http://localhost:9292)
+
+
+7. Login
+
+The login username/passwords, those `config/database.yml` is set.
+
 
 ## License
 
