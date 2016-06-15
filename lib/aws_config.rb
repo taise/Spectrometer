@@ -3,17 +3,17 @@ require 'aws-sdk'
 
 class AwsConfig
   def self.valid?
-    [
-      'region',
-      'cluster_identifier',
-      'aws_access_key_id',
-      'aws_secret_access_key'
-    ].map { |key| CONFIG.key? key }
+    %w(
+      region
+      cluster_identifier
+      aws_access_key_id
+      aws_secret_access_key
+    ).map { |key| CONFIG.key? key }
       .reduce { |bool, value| bool & value }
   end
 
   CONFIG = YAML.load_file('./config/aws.yml')
-  fail 'Aws config validation error' unless self.valid?
+  raise 'Aws config validation error' unless valid?
 
   class << self
     def region
