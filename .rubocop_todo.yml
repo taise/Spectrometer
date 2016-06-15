@@ -17,14 +17,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 27
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: with_first_parameter, with_fixed_indentation
-Style/AlignParameters:
-  Exclude:
-    - 'Gemfile'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
