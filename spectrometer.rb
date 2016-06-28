@@ -13,6 +13,7 @@ $LOAD_PATH << './models'
 require 'redshift'
 require 'pg_user'
 require 'stl_error'
+require 'stv_inflight'
 require 'stv_wlm_service_class_state'
 
 ENV['TZ'] = 'Asia/Tokyo'
@@ -34,6 +35,11 @@ class Spectrometer < Sinatra::Base
   get '/service_class_states' do
     @service_class_states = StvWlmServiceClassState.all
     slim :service_class_state
+  end
+
+  get '/inflight_queries' do
+    @queries = StvInflight.find_running_queries
+    slim :inflight_queries
   end
 
   get '/users' do

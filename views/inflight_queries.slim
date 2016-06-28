@@ -1,0 +1,21 @@
+div class='column'
+  h1 class=['title', 'is-3'] Inflight Queries
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th pid
+        th user
+        th exec_time
+        th queue_time
+        th starttime
+        th text
+    tbody
+      - @queries.each do |query|
+        tr
+          td = query.pid
+          td = query.user
+          td = query.exec_time
+          td = query.queue_time
+          td = query.starttime.local_timestamp
+          td = query.text
