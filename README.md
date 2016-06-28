@@ -8,6 +8,7 @@ AWS Redshift monitoring web console.
 
 * Redshift performance metrics by AWS CloudWatch
 * WLM queue state
+* Inflight queries
 * pg_user list
 * error list
 
@@ -22,7 +23,7 @@ AWS Redshift monitoring web console.
 
 ### Next Features
 
-* Check slow query & notification
+* Notify slow queries
 * Chack overflowing WLM queue & notification
 
 
