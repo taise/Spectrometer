@@ -15,7 +15,9 @@ div class='column'
         tr
           td = query.pid
           td = query.user
-          td = query.exec_time
+          td
+            div class=('tag is-danger' if query.exec_time > 5.minutes.to_i)
+              = query.exec_time
           td = query.queue_time
           td = query.starttime.local_timestamp
           td = query.text
