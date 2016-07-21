@@ -17,10 +17,10 @@ class RedshiftMetric
 
   def get(args = {})
     @metric.get_statistics(
-      start_time: args['start_time'] || 12.hours.ago,
-      end_time: args['end_time']     || Time.now,
-      statistics: args['statistics'] || ['Average'],
-      period: args['period']         || 60 * 10,
+      start_time: args[:start_time] || 12.hours.ago,
+      end_time: args[:end_time]     || Time.now,
+      statistics: args[:statistics] || ['Average'],
+      period: args[:period]         || 60 * 10,
       dimensions: [
         {
           name:  DIMENSION_NAME,
@@ -33,6 +33,13 @@ class RedshiftMetric
   def average
     # get Average statistics & return data matrix
     get(statistics: ['Average']).map { |dp| [dp.timestamp, dp.average] }
+  end
+
+  def max_by_1_min
+    # get Average statistics & return data matrix
+    get(start_time: 2.hours.ago, statistics: ['Maximum'], period: 60).map do
+      |dp| [dp.timestamp, dp.maximum]
+    end
   end
 
   def name=(name)
