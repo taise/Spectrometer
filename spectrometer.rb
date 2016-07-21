@@ -32,6 +32,11 @@ class Spectrometer < Sinatra::Base
     slim :performances
   end
 
+  get '/performances_short' do
+    # TODO: async requests to Aws::CloudWatch::Metric
+    slim :performances_short
+  end
+
   get '/service_class_states' do
     @service_class_states = StvWlmServiceClassState.all
     slim :service_class_state
