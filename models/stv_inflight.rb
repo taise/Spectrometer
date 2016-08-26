@@ -21,6 +21,8 @@ FROM
     ON u.usesysid = si.userid
 WHERE
   qs.state = 'Running'
+ORDER BY
+  starttime
 EOS
     find_by_sql(sql)
   end
