@@ -1,0 +1,23 @@
+div class='column'
+  h1 class=['title', 'is-3'] Slow Queries
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th userid,
+        th user_name,
+        th query,
+        th elapsed_time,
+        th starttime,
+        th endtime,
+        th sql_text
+    tbody
+      - @queries.each do |query|
+        tr
+          td = query.userid
+          td = query.user_name
+          td = query.query
+          td = query.elapsed_time
+          td = query.starttime.local_timestamp
+          td = query.endtime.local_timestamp
+          td = query.sql_text
