@@ -20,7 +20,8 @@ div class='column'
           td = query.user_name
           td = query.query
           td = query.pid
-          td = query.xid
+          td
+            a href="/detail_query/#{query.xid}" = query.xid
           td = query.elapsed_time
           td = query.starttime.local_timestamp
           td = query.endtime.local_timestamp
