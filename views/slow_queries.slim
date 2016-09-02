@@ -24,7 +24,9 @@ div class='column'
           td = query.pid
           td
             a href="/detail_query/#{query.xid}" = query.xid
-          td = query.elapsed_time
+          td
+            div class=('tag is-danger' if query.elapsed_sec > 60 * 10)
+              = query.elapsed_time
           td = query.starttime.local_timestamp
           td = query.endtime.local_timestamp
           td = query.sql_text
