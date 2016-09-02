@@ -16,6 +16,7 @@ require 'stl_error'
 require 'stv_inflight'
 require 'stv_wlm_service_class_state'
 require 'svl_qlog'
+require 'svl_statementtext'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -51,6 +52,13 @@ class Spectrometer < Sinatra::Base
   get '/slow_queries' do
     @queries = SvlQlog.find_slow_queries
     slim :slow_queries
+  end
+
+  get '/detail_query/:xid' do |xid|
+    queries = SvlStatementtext.find_query_full_text(xid)
+    @query = queries.first
+    @sql = queries.map(&:text).reduce('') { |sql, text| sql + text }.gsub('\\n', "\r")
+    slim :detail_query
   end
 
   get '/users' do

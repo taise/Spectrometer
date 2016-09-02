@@ -1,0 +1,30 @@
+div class='column'
+  h1 class=['title', 'is-3'] Detail Query
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    tbody
+        tr
+          td userid
+          td = @query.userid
+        tr
+          td user_name
+          td = @query.user_name
+        tr
+          td xid
+          td = @query.xid
+        tr
+          td pid
+          td = @query.pid
+        tr
+          td starttime
+          td = @query.starttime
+        tr
+          td endtime
+          td = @query.endtime
+        tr
+          td query_type
+          td = @query.query_type
+        tr
+          td SQL
+          td
+            pre = @sql
