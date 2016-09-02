@@ -35,4 +35,11 @@ ORDER BY
 EOS
     find_by_sql(sql)
   end
+
+  def elapsed_time
+    elapsed_sec = (self.endtime - self.starttime).to_i
+    min = elapsed_sec / 60
+    sec = elapsed_sec % 60
+    "#{min}:#{'%02d' % sec}"
+  end
 end
