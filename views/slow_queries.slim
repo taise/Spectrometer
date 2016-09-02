@@ -4,12 +4,13 @@ div class='column'
   table class='table'
     thead
       tr
-        th userid,
-        th user_name,
-        th query,
-        th elapsed_time,
-        th starttime,
-        th endtime,
+        th userid
+        th user_name
+        th query
+        th pid
+        th elapsed_time
+        th starttime
+        th endtime
         th sql_text
     tbody
       - @queries.each do |query|
@@ -17,6 +18,7 @@ div class='column'
           td = query.userid
           td = query.user_name
           td = query.query
+          td = query.pid
           td = query.elapsed_time
           td = query.starttime.local_timestamp
           td = query.endtime.local_timestamp

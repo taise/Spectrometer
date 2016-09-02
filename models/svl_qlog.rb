@@ -10,6 +10,7 @@ WITH queries AS (
   SELECT
     userid,
     query,
+    pid,
     starttime,
     endtime,
     elapsed / (1000 * 1000) AS elapsed_sec,
