@@ -2,10 +2,12 @@
 
 class SvlQlog < Redshift
   self.table_name = 'svl_qlog'
+  WITHIN = 12  # hours
+  OVER = 5     # minutes
 
   # TODO: using ActiveRecord::QueryMethods
   def self.find_slow_queries
-    sql = <<'EOS'
+    sql = <<"EOS"
 WITH queries AS (
   SELECT
     userid,
@@ -19,8 +21,8 @@ WITH queries AS (
   FROM
     svl_qlog
   WHERE
-    starttime >= (GETDATE() - INTERVAL '3 hour')
-    AND elapsed >= (1000 * 1000 * 60 * 5) -- 5 minutes
+    starttime >= (GETDATE() - INTERVAL '#{WITHIN} hour')
+    AND elapsed >= 1000 * 1000 * 60 * #{OVER}
 )
 
 SELECT
@@ -32,6 +34,7 @@ FROM
     ON queries.userid = pg_user.usesysid
 ORDER BY
   queries.starttime
+LIMIT 100
 ;
 EOS
     find_by_sql(sql)

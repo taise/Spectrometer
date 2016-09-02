@@ -1,6 +1,8 @@
 div class='column'
   h1 class=['title', 'is-3'] Slow Queries
   p updated at: #{Time.now.local_timestamp}
+  p slow query: The query executed within #{SvlQlog::WITHIN} hours
+      and elapsed times over #{SvlQlog::OVER} minutes
   table class='table'
     thead
       tr
