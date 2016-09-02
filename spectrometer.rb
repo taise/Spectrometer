@@ -15,6 +15,7 @@ require 'pg_user'
 require 'stl_error'
 require 'stv_inflight'
 require 'stv_wlm_service_class_state'
+require 'svl_qlog'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -45,6 +46,11 @@ class Spectrometer < Sinatra::Base
   get '/inflight_queries' do
     @queries = StvInflight.find_running_queries
     slim :inflight_queries
+  end
+
+  get '/slow_queries' do
+    @queries = SvlQlog.find_slow_queries
+    slim :slow_queries
   end
 
   get '/users' do
