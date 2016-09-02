@@ -1,0 +1,19 @@
+div class='column'
+  h1 class=['title', 'is-3'] Stats Off Tables
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th database
+        th schema
+        th table
+        th stats_off
+    tbody
+      - @tables.each do |table|
+        tr
+          td = table.database
+          td = table.schema
+          td = table.table
+          td
+            div class=('tag is-danger' if table.stats_off > 20)
+              = table.stats_off

@@ -17,6 +17,7 @@ require 'stv_inflight'
 require 'stv_wlm_service_class_state'
 require 'svl_qlog'
 require 'svl_statementtext'
+require 'svv_table_info'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -59,6 +60,11 @@ class Spectrometer < Sinatra::Base
     @query = queries.first
     @sql = queries.map(&:text).reduce('') { |sql, text| sql + text }.gsub('\\n', "\r")
     slim :detail_query
+  end
+
+  get '/stats_off' do
+    @tables = SvvTableInfo.find_stats_off
+    slim :stats_off
   end
 
   get '/users' do
