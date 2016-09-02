@@ -9,6 +9,7 @@ class StvInflight < Redshift
 SELECT
   si.pid,
   u.usename AS user,
+  si.xid,
   qs.exec_time / 1000000 AS exec_time,
   qs.queue_time / 1000000 AS queue_time,
   si.starttime,

@@ -6,6 +6,7 @@ div class='column'
       tr
         th pid
         th user
+        th xid
         th exec_time
         th queue_time
         th starttime
@@ -15,6 +16,8 @@ div class='column'
         tr
           td = query.pid
           td = query.user
+          td
+            a href="/detail_query/#{query.xid}" = query.xid
           td
             div class=('tag is-danger' if query.exec_time > 5.minutes.to_i)
               = query.exec_time
