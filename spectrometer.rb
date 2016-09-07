@@ -13,6 +13,7 @@ $LOAD_PATH << './models'
 require 'redshift'
 require 'pg_user'
 require 'stl_error'
+require 'stl_query'
 require 'stv_inflight'
 require 'stv_wlm_service_class_state'
 require 'svl_qlog'
@@ -43,6 +44,12 @@ class Spectrometer < Sinatra::Base
   get '/service_class_states' do
     @service_class_states = StvWlmServiceClassState.all
     slim :service_class_state
+  end
+
+  get '/stats_queries' do
+    @queries_per_minute = StlQuery.queries_per_minute
+    @queries_per_10_minutes = StlQuery.queries_per_10_minutes
+    slim :stats_queries
   end
 
   get '/inflight_queries' do
