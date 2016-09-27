@@ -6,7 +6,7 @@ div class='column'
   p updated at: #{Time.now.local_timestamp}
 
   h2 class=['title', 'is-4'] CPU Utilization
-  == line_chart RedshiftMetric.new('CPUUtilization').max_by_1_min
+  == line_chart RedshiftMetric.new('CPUUtilization').max_by_1_min, min: 0, max: 100
 
   h2 class=['title', 'is-4'] Network Receive Throughput
   == line_chart RedshiftMetric.new('NetworkReceiveThroughput').max_by_1_min
@@ -36,4 +36,4 @@ div class='column'
   == line_chart RedshiftMetric.new('MaintenanceMode').max_by_1_min
 
   h2 class=['title', 'is-4'] Percentage Disk Space Used
-  == line_chart RedshiftMetric.new('PercentageDiskSpaceUsed').max_by_1_min
+  == line_chart RedshiftMetric.new('PercentageDiskSpaceUsed').max_by_1_min, min: 0, max: 100
