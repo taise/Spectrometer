@@ -6,6 +6,7 @@ div class='column'
       tr
         th pid
         th user
+        th state
         th xid
         th exec_time
         th queue_time
@@ -16,6 +17,7 @@ div class='column'
         tr
           td = query.pid
           td = query.user
+          td = query.state
           td
             a href="/detail_query/#{query.xid}" = query.xid
           td
