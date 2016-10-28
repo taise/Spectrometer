@@ -1,28 +1,21 @@
-GIT
-  remote: git://github.com/taise/activerecord4-redshift-adapter.git
-  revision: 97886a1efe6ea0b91b782444dd04ffa4288e6a12
-  specs:
-    activerecord4-redshift-adapter (0.2.1)
-      activerecord (~> 4.2.0)
-      pg
-
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (4.2.6)
-      activesupport (= 4.2.6)
-      builder (~> 3.1)
-    activerecord (4.2.6)
-      activemodel (= 4.2.6)
-      activesupport (= 4.2.6)
-      arel (~> 6.0)
-    activesupport (4.2.6)
+    activemodel (5.0.0.1)
+      activesupport (= 5.0.0.1)
+    activerecord (5.0.0.1)
+      activemodel (= 5.0.0.1)
+      activesupport (= 5.0.0.1)
+      arel (~> 7.0)
+    activerecord5-redshift-adapter (0.0.1)
+      activerecord (~> 5.0.0)
+      pg (>= 0.18)
+    activesupport (5.0.0.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.3)
+    arel (7.1.4)
     ast (2.3.0)
     aws-sdk (2.3.13)
       aws-sdk-resources (= 2.3.13)
@@ -31,18 +24,17 @@ GEM
     aws-sdk-resources (2.3.13)
       aws-sdk-core (= 2.3.13)
     backports (3.6.8)
-    builder (3.2.2)
     chartkick (2.0.0)
+    concurrent-ruby (1.0.2)
     i18n (0.7.0)
     jmespath (1.2.4)
       json_pure (>= 1.8.1)
-    json (1.8.3)
     json_pure (1.8.3)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.1)
     parser (2.3.1.2)
       ast (~> 2.2)
-    pg (0.18.4)
+    pg (0.19.0)
     powerpack (0.1.1)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -82,9 +74,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 4.2)
-  activerecord4-redshift-adapter!
-  activesupport (~> 4.2)
+  activerecord (~> 5.0)
+  activerecord5-redshift-adapter
+  activesupport (~> 5.0)
   aws-sdk (~> 2.3)
   chartkick
   rubocop
