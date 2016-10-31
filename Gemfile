@@ -6,10 +6,11 @@ ruby '2.3.1'
 gem 'sinatra', '~> 1.4'
 gem 'sinatra-contrib', '~> 1.4'
 
-gem 'activerecord', '~> 5.0'
-gem 'activerecord5-redshift-adapter'
+gem 'activerecord', '~> 4.2'
+gem 'activerecord4-redshift-adapter',
+    github: 'taise/activerecord4-redshift-adapter'
 
-gem 'activesupport', '~> 5.0'
+gem 'activesupport', '~> 4.2'
 
 gem 'slim'
 
