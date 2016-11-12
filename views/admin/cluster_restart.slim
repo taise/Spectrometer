@@ -1,0 +1,13 @@
+div class='column'
+  h1 class=['title', 'is-3'] Cluster Restart
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th current
+        th restart
+    tbody
+      - @queries.each do |query|
+        tr
+          td = query.current_ts
+          td = query.restart_ts
