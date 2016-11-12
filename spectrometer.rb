@@ -19,6 +19,7 @@ require 'stv_wlm_service_class_state'
 require 'svl_qlog'
 require 'svl_statementtext'
 require 'svv_table_info'
+require 'stl_utilitytext'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -82,6 +83,11 @@ class Spectrometer < Sinatra::Base
   get '/errors' do
     @errors = StlError.find_join_user
     slim :errors
+  end
+
+  get '/admin/cluster_restart' do
+    @queries = StlUtilitytext.find_cluster_restart
+    slim :'admin/cluster_restart'
   end
 
   def self.new(*)

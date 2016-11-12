@@ -26,11 +26,4 @@ ORDER BY
 EOS
     find_by_sql(sql)
   end
-
-  # stv_inflight.slice is defined by Active Record.
-  def self.instance_method_already_implemented?(method_name)
-    super(method_name)
-  rescue ActiveRecord::DangerousAttributeError
-    true
-  end
 end
