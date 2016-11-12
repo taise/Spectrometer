@@ -1,0 +1,25 @@
+div class='column'
+  h1 class=['title', 'is-3'] Schema Tables
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th database
+        th schema_id
+        th schema
+        th table_id
+        th table
+        th mbytes
+        th rows
+        th owner
+    tbody
+      - @schema_tables.each do |schema_table|
+        tr
+          td = schema_table.database_name
+          td = schema_table.schema_id
+          td = schema_table.schema_name
+          td = schema_table.table_id
+          td = schema_table.tablename
+          td style='text-align: right;' = schema_table.mbytes
+          td style='text-align: right;' = schema_table.rows
+          td = schema_table.owner
