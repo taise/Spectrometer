@@ -3,6 +3,8 @@
 require 'yaml'
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'active_support'
+require 'active_support/core_ext'
 require 'slim'
 require 'chartkick'
 
@@ -20,6 +22,7 @@ require 'svl_qlog'
 require 'svl_statementtext'
 require 'svv_table_info'
 require 'stl_utilitytext'
+require 'stv_tbl_perm'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -40,6 +43,11 @@ class Spectrometer < Sinatra::Base
   get '/performances_short' do
     # TODO: async requests to Aws::CloudWatch::Metric
     slim :performances_short
+  end
+
+  get '/schema_tables' do
+    @schema_tables = StvTblPerm.find_tables
+    slim :schema_tables
   end
 
   get '/service_class_states' do
