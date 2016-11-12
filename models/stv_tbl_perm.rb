@@ -32,7 +32,7 @@ table_sizes AS (
 SELECT
   TRIM(pgdb.datname) AS database_name,
   TRIM(pgn.nspname) AS schema_name,
-  pgc.oid AS table_id,
+  tables.id AS table_id,
   TRIM(tables.name) AS tablename,
   table_sizes.mbytes,
   tables.rows,
