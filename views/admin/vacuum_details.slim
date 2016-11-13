@@ -21,7 +21,8 @@ div class='column'
       - @tables.each do |table|
         tr
           td = table.userid
-          td = table.table_id
+          td
+            a href="/tables/#{table.table_id}" = table.table_id
           td = table.schema_name
           td = table.table_name
           td = table.start_time.local_timestamp
