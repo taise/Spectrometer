@@ -23,6 +23,7 @@ require 'svl_statementtext'
 require 'svv_table_info'
 require 'stl_utilitytext'
 require 'stv_tbl_perm'
+require 'stl_vacuum'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -96,6 +97,11 @@ class Spectrometer < Sinatra::Base
   get '/errors' do
     @errors = StlError.find_join_user
     slim :errors
+  end
+
+  get '/admin/vacuum_details' do
+    @tables = StlVacuum.find_details
+    slim :'admin/vacuum_details'
   end
 
   get '/admin/cluster_restart' do
