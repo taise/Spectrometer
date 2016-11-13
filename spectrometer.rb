@@ -16,6 +16,7 @@ require 'redshift'
 require 'pg_user'
 require 'pg_table_def'
 require 'stl_error'
+require 'stl_load_error'
 require 'stl_query'
 require 'stv_inflight'
 require 'stv_wlm_service_class_state'
@@ -99,6 +100,11 @@ class Spectrometer < Sinatra::Base
   get '/errors' do
     @errors = StlError.find_join_user
     slim :errors
+  end
+
+  get '/stl_load_errors' do
+    @errors = StlLoadError.find_with_table_info
+    slim :stl_load_errors
   end
 
   get '/admin/vacuum_details' do

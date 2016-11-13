@@ -1,0 +1,31 @@
+div class='column'
+  h1 class=['title', 'is-3'] StlLoadErrors
+  p updated at: #{Time.now.local_timestamp}
+  table class='table'
+    thead
+      tr
+        th userid
+        th schema
+        th table
+        th starttime
+        th line
+        th colname
+        th type
+        th col_length
+        th position
+        th raw_field_value
+        th err_reason
+    tbody
+      - @errors.each do |error|
+        tr
+          td = error.userid
+          td = error.schema
+          td = error.table_name
+          td = error.starttime
+          td = error.line_number
+          td = error.colname
+          td = error.column_type
+          td = error.col_length
+          td = error.position
+          td = error.raw_field_value
+          td = error.err_reason
