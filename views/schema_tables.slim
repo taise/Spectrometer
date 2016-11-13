@@ -16,7 +16,8 @@ div class='column'
         tr
           td = schema_table.database_name
           td = schema_table.schema_name
-          td = schema_table.table_id
+          td
+            a href="/tables/#{schema_table.table_id}" = schema_table.table_id
           td = schema_table.tablename
           td style='text-align: right;' = schema_table.mbytes
           td style='text-align: right;' = schema_table.rows

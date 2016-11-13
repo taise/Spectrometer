@@ -53,7 +53,7 @@ class Spectrometer < Sinatra::Base
 
   get '/tables/:id' do |table_id|
     @tables = SvvTableInfo.extended_info(table_id)
-    slim :extended_info
+    slim :table_info
   end
 
   get '/service_class_states' do
