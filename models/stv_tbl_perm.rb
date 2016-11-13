@@ -31,9 +31,8 @@ table_sizes AS (
 
 SELECT
   TRIM(pgdb.datname) AS database_name,
-  pgn.oid AS schema_id,
   TRIM(pgn.nspname) AS schema_name,
-  pgc.oid AS table_id,
+  tables.id AS table_id,
   TRIM(tables.name) AS tablename,
   table_sizes.mbytes,
   tables.rows,
@@ -41,19 +40,19 @@ SELECT
 FROM
   tables
   LEFT JOIN pg_class AS pgc
-    ON pgc.oid = tables.id
+    ON tables.id = pgc.oid
   LEFT JOIN pg_user AS pu
-    ON (pgc.relowner = pu.usesysid)
+    ON pgc.relowner = pu.usesysid
   LEFT JOIN pg_namespace AS pgn
-    ON pgn.oid = pgc.relnamespace
-    AND pgn.nspowner > 1
+    ON pgc.relnamespace = pgn.oid
+      AND pgn.nspowner > 1
   LEFT JOIN pg_database AS pgdb
-    ON pgdb.oid = tables.db_id
+    ON tables.db_id = pgdb.oid
   LEFT JOIN table_sizes
     ON tables.id = table_sizes.table_id
 ORDER BY
   tables.db_id,
-  schema_id,
+  pgn.oid, --  schema_id
   tablename
 EOS
     find_by_sql(sql)

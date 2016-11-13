@@ -5,7 +5,6 @@ div class='column'
     thead
       tr
         th database
-        th schema_id
         th schema
         th table_id
         th table
@@ -16,7 +15,6 @@ div class='column'
       - @schema_tables.each do |schema_table|
         tr
           td = schema_table.database_name
-          td = schema_table.schema_id
           td = schema_table.schema_name
           td = schema_table.table_id
           td = schema_table.tablename
