@@ -29,20 +29,23 @@ div class='column'
           td = @table.stats_off
   h2 class=['subtitle'] Table Definitions
   table class='table'
-    thead
-      tr
-        th column
-        th type
-        th encoding
-        th distkey
-        th sortkey
-        th notnull
-    tbody
-      - @table_defs.each do |table_def|
+    - if @table_defs
+      thead
         tr
-          td = table_def.column
-          td = table_def.column_type
-          td = table_def.encoding
-          td = table_def.distkey
-          td = table_def.sortkey
-          td = table_def.notnull
+          th column
+          th type
+          th encoding
+          th distkey
+          th sortkey
+          th notnull
+      tbody
+        - @table_defs.each do |table_def|
+          tr
+            td = table_def.column
+            td = table_def.column_type
+            td = table_def.encoding
+            td = table_def.distkey
+            td = table_def.sortkey
+            td = table_def.notnull
+    - else
+      p set search_path to '$user', '$schemas'
