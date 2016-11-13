@@ -1,6 +1,7 @@
 div class='column'
   h1 class=['title', 'is-3'] Table Info
   p updated at: #{Time.now.local_timestamp}
+  h2 Table Overview
   table class='table'
     thead
       tr
@@ -15,16 +16,34 @@ div class='column'
         th unsorted
         th stats_off
     tbody
-      - @tables.each do |table|
+      - if @table
         tr
-          td = table.db
-          td = table.schema
-          td = table.table_id
-          td = table.tablename
-          td = table.max_varchar
-          td = table.diststyle
-          td = table.sort_key
-          td = table.rows
-          td = table.unsorted
-          td = table.stats_off
-    p TODO: table definitions
+          td = @table.db
+          td = @table.schema
+          td = @table.table_id
+          td = @table.tablename
+          td = @table.max_varchar
+          td = @table.diststyle
+          td = @table.sort_key
+          td = @table.rows
+          td = @table.unsorted
+          td = @table.stats_off
+  h2 Table Definitions
+  table class='table'
+    thead
+      tr
+        th column
+        th type
+        th encoding
+        th distkey
+        th sortkey
+        th notnull
+    tbody
+      - @table_defs.each do |table_def|
+        tr
+          td = table_def.column
+          td = table_def.column_type
+          td = table_def.encoding
+          td = table_def.distkey
+          td = table_def.sortkey
+          td = table_def.notnull

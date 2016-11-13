@@ -14,6 +14,7 @@ require './lib/time'
 $LOAD_PATH << './models'
 require 'redshift'
 require 'pg_user'
+require 'pg_table_def'
 require 'stl_error'
 require 'stl_query'
 require 'stv_inflight'
@@ -52,7 +53,8 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/tables/:id' do |table_id|
-    @tables = SvvTableInfo.extended_info(table_id)
+    @table = SvvTableInfo.extended_info(table_id).first
+    @table_defs = PgTableDef.find_columns(@table.schema, @table.tablename)
     slim :table_info
   end
 
