@@ -7,4 +7,5 @@ development:
   password: your_password
   encoding: utf8
   pool: 3
+  schema_search_path: 'public, admin'
   timeout: 5000
