@@ -30,4 +30,4 @@ div class='column'
           td
             form action='/cancel' method='post' enctype='multipart/form-data'
               input type='hidden' name='pid' value="#{query.pid}"
-              input type='submit' value='Cancel'
+              input type='submit' value='Cancel' onClick='return confirm("Are you sure?")'
