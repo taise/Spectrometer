@@ -10,6 +10,7 @@ require 'chartkick'
 
 require './lib/redshift_metric'
 require './lib/time'
+require './helpers/cosmetic_helper'
 
 $LOAD_PATH << './models'
 require 'redshift'
@@ -33,6 +34,8 @@ class Spectrometer < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+
+  helpers Sinatra::CosmeticHelper
 
   get '/' do
     slim :index
