@@ -120,6 +120,13 @@ class Spectrometer < Sinatra::Base
     slim :'admin/cluster_restart'
   end
 
+  post '/cancel' do
+    pid = params[:pid]
+    redirect '/' if pid.nil?
+    StvInflight.cancel(pid)
+    redirect '/inflight_queries'
+  end
+
   def self.new(*)
     # login user/pass == database user/pass
     db = YAML.load_file('config/database.yml')[ENV['RACK_ENV']]

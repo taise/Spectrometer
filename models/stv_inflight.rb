@@ -26,4 +26,10 @@ ORDER BY
 EOS
     find_by_sql(sql)
   end
+
+  def self.cancel(pid)
+    res = connection.execute("CANCEL #{pid}")
+    p res
+    res
+  end
 end
