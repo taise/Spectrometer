@@ -10,6 +10,7 @@ require 'chartkick'
 
 require './lib/redshift_metric'
 require './lib/time'
+require './helpers/cosmetic_helper'
 
 $LOAD_PATH << './models'
 require 'redshift'
@@ -33,6 +34,8 @@ class Spectrometer < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+
+  helpers Sinatra::CosmeticHelper
 
   get '/' do
     slim :index
@@ -107,9 +110,9 @@ class Spectrometer < Sinatra::Base
     slim :stl_load_errors
   end
 
-  get '/admin/vacuum_details' do
-    @tables = StlVacuum.find_details
-    slim :'admin/vacuum_details'
+  get '/admin/vacuum_results' do
+    @tables = StlVacuum.find_results
+    slim :'admin/vacuum_results'
   end
 
   get '/admin/cluster_restart' do

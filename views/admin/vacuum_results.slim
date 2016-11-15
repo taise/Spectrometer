@@ -1,36 +1,28 @@
 div class='column'
-  h1 class=['title', 'is-3'] Vacuum details
+  h1 class=['title', 'is-3'] Vacuum Results
   p updated at: #{Time.now.local_timestamp}
   table class='table'
     thead
       tr
         th userid
         th table_id
-        th schema
-        th table
+        th schema.table
+        th start_status
+        th end_status
         th start_time
-        th end_time
-        th start_rows
-        th end_rows
-        th start_blocks
-        th end_blocks
         th rows_deleted
         th blocks_diff
-        th processing(sec)
+        th process_sec
     tbody
       - @tables.each do |table|
         tr
           td = table.userid
           td
             a href="/tables/#{table.table_id}" = table.table_id
-          td = table.schema_name
-          td = table.table_name
+          td = table.schema_name + '.' + short_name(table.table_name)
+          td = table.start_status
+          td = table.end_status
           td = table.start_time.local_timestamp
-          td = table.end_time.local_timestamp
-          td = table.start_rows
-          td = table.end_rows
-          td = table.start_blocks
-          td = table.end_blocks
           td = table.rows_deleted
           td = table.blocks_deleted_added
           td = table.processing_seconds
