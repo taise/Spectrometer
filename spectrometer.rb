@@ -107,9 +107,9 @@ class Spectrometer < Sinatra::Base
     slim :stl_load_errors
   end
 
-  get '/admin/vacuum_details' do
-    @tables = StlVacuum.find_details
-    slim :'admin/vacuum_details'
+  get '/admin/vacuum_results' do
+    @tables = StlVacuum.find_results
+    slim :'admin/vacuum_results'
   end
 
   get '/admin/cluster_restart' do

@@ -3,7 +3,7 @@
 class StlVacuum < Redshift
   self.table_name = 'stl_vacuum'
 
-  def self.find_details
+  def self.find_results
     sql = <<'EOS'
 WITH tables AS (
   SELECT
