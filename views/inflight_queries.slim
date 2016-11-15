@@ -12,6 +12,7 @@ div class='column'
         th queue_time
         th starttime
         th text
+        th cancel
     tbody
       - @queries.each do |query|
         tr
@@ -26,3 +27,7 @@ div class='column'
           td = query.queue_time
           td = query.starttime.local_timestamp
           td = query.text
+          td
+            form action='/cancel' method='post' enctype='multipart/form-data'
+              input type='hidden' name='pid' value="#{query.pid}"
+              input type='submit' value='Cancel'
