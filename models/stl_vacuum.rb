@@ -32,7 +32,7 @@ SELECT
   DATEDIFF(seconds, vac_start.eventtime, vac_end.eventtime) AS processing_seconds
 FROM
   stl_vacuum AS vac_start
-  INNER JOIN stl_vacuum AS vac_end
+  LEFT JOIN stl_vacuum AS vac_end
     ON vac_start.userid = vac_end.userid
       AND vac_start.table_id = vac_end.table_id
       AND vac_start.xid = vac_end.xid
@@ -40,6 +40,8 @@ FROM
       AND vac_end.status = 'Finished'
   INNER JOIN tables
     ON tables.table_id = vac_start.table_id
+WHERE
+  start_time >= CURRENT_TIME - INTERVAL '1 week'
 ORDER BY
   start_time DESC
 EOS
