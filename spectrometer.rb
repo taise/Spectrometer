@@ -27,6 +27,7 @@ require 'svv_table_info'
 require 'stl_utilitytext'
 require 'stv_tbl_perm'
 require 'stl_vacuum'
+require 'stl_wlm_query'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -60,6 +61,11 @@ class Spectrometer < Sinatra::Base
     @table = SvvTableInfo.extended_info(table_id).first
     @table_defs = PgTableDef.find_columns(@table.schema, @table.tablename)
     slim :table_info
+  end
+
+  get '/query_timelines' do
+    @queries = StlWLMQuery.find_recents
+    slim :query_timelines
   end
 
   get '/service_class_states' do
