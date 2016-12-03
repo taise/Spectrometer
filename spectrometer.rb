@@ -22,7 +22,6 @@ require 'svl_qlog'
 require 'svl_statementtext'
 require 'svv_table_info'
 require 'stl_utilitytext'
-require 'stv_tbl_perm'
 require 'stl_vacuum'
 
 ENV['TZ'] = 'Asia/Tokyo'
@@ -49,7 +48,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/schema_tables' do
-    @schema_tables = StvTblPerm.find_tables
+    @schema_tables = RedshiftBase.execute(SQL.text('schema_tables.sql'))
     slim :schema_tables
   end
 

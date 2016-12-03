@@ -1,10 +1,3 @@
-# frozen_string_literal: true
-
-class StvTblPerm < Redshift
-  self.table_name = 'stv_tbl_perm'
-
-  def self.find_tables
-    sql = <<'EOS'
 WITH tables AS (
   SELECT
     db_id,
@@ -54,7 +47,3 @@ ORDER BY
   tables.db_id,
   pgn.oid, --  schema_id
   tablename
-EOS
-    find_by_sql(sql)
-  end
-end
