@@ -58,14 +58,12 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/query_timelines' do
-    sql = SQL.text('query_timelines.sql')
-    @queries = RedshiftBase.execute(sql)
+    @queries = RedshiftBase.execute(SQL.text('query_timelines.sql'))
     slim :query_timelines
   end
 
   get '/service_class_states' do
-    sql = SQL.text('service_class_states.sql')
-    @service_class_states = RedshiftBase.execute(sql)
+    @service_class_states = RedshiftBase.execute(SQL.text('service_class_states.sql'))
     slim :service_class_state
   end
 
@@ -93,7 +91,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/stats_off' do
-    @tables = SvvTableInfo.find_stats_off
+    @tables = RedshiftBase.execute(SQL.text('stats_off.sql'))
     slim :stats_off
   end
 

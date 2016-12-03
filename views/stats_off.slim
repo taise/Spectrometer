@@ -11,9 +11,9 @@ div class='column'
     tbody
       - @tables.each do |table|
         tr
-          td = table.database
-          td = table.schema
-          td = table.table
+          td = table['database']
+          td = table['schema']
+          td = table['table']
           td
-            div class=('tag is-danger' if table.stats_off > 20)
-              = table.stats_off
+            div class=('tag is-danger' if table['stats_off'].to_i > 20)
+              = table['stats_off']
