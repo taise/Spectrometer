@@ -8,7 +8,7 @@ module Sinatra
 
     def local_timestamp(time_str)
       Time.parse(time_str).local_timestamp
-    rescue => e
+    rescue
       nil
     end
   end

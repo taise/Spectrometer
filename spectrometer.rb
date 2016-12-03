@@ -22,7 +22,7 @@ require 'stl_utilitytext'
 require 'stl_vacuum'
 
 ENV['TZ'] = 'Asia/Tokyo'
-
+# Spectator Controller
 class Spectrometer < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
@@ -56,8 +56,8 @@ class Spectrometer < Sinatra::Base
     @table = conn.select_all(sql).first
 
     sql = SQL.text('table_defs.sql')
-      .sub('__schema__', @table['schema'])
-      .sub('__tablename__', @table['tablename'])
+             .sub('__schema__', @table['schema'])
+             .sub('__tablename__', @table['tablename'])
     @table_defs = conn.select_all(sql)
     slim :table_info
   end

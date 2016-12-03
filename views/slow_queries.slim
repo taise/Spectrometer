@@ -27,7 +27,7 @@ div class='column'
           td
             - elapsed_sec = query['elapsed_sec'].to_i
             div class=('tag is-danger' if elapsed_sec > 60 * 10)
-              = "#{elapsed_sec / 60}:#{'%02d' % (elapsed_sec % 60)}"
+              = "#{elapsed_sec / 60}:#{format('%02d', elapsed_sec % 60)}"
           td = local_timestamp(query['starttime'])
           td = local_timestamp(query['endtime'])
           td = query['sql_text']
