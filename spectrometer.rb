@@ -18,7 +18,6 @@ require 'redshift_base'
 require 'sql'
 require 'pg_table_def'
 require 'stv_inflight'
-require 'svl_qlog'
 require 'svl_statementtext'
 require 'svv_table_info'
 require 'stl_utilitytext'
@@ -82,7 +81,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/slow_queries' do
-    @queries = SvlQlog.find_slow_queries
+    @queries = RedshiftBase.execute(SQL.text('slow_queries.sql'))
     slim :slow_queries
   end
 

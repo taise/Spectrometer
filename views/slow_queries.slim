@@ -1,8 +1,8 @@
 div class='column'
   h1 class=['title', 'is-3'] Slow Queries
   p updated at: #{Time.now.local_timestamp}
-  p slow query: The query executed within #{SvlQlog::WITHIN} hours
-      and elapsed times over #{SvlQlog::OVER} minutes
+  p slow query: The query executed within 12 hours
+      and elapsed times over 5 minutes
   table class='table'
     thead
       tr
@@ -18,15 +18,16 @@ div class='column'
     tbody
       - @queries.each do |query|
         tr
-          td = query.userid
-          td = query.user_name
-          td = query.query
-          td = query.pid
+          td = query['userid']
+          td = query['user_name']
+          td = query['query']
+          td = query['pid']
           td
-            a href="/detail_query/#{query.xid}" = query.xid
+            a href="/detail_query/#{query['xid']}" = query['xid']
           td
-            div class=('tag is-danger' if query.elapsed_sec > 60 * 10)
-              = query.elapsed_time
-          td = query.starttime.local_timestamp
-          td = query.endtime.local_timestamp
-          td = query.sql_text
+            - elapsed_sec = query['elapsed_sec'].to_i
+            div class=('tag is-danger' if elapsed_sec > 60 * 10)
+              = "#{elapsed_sec / 60}:#{'%02d' % (elapsed_sec % 60)}"
+          td = local_timestamp(query['starttime'])
+          td = local_timestamp(query['endtime'])
+          td = query['sql_text']
