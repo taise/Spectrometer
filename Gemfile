@@ -19,4 +19,5 @@ gem 'chartkick'
 
 group :development do
   gem 'rubocop'
+  gem 'pry'
 end
