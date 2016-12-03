@@ -1,8 +1,3 @@
-# frozen_string_literal: true
-
-class StlLoadError < Redshift
-  def self.find_with_table_info
-    sql = <<-"EOS"
 WITH tables AS (
   SELECT
     DISTINCT TRIM(pgn.nspname) AS schema_name,
@@ -32,7 +27,3 @@ FROM
     ON sle.tbl = tables.table_id
 ORDER BY
   starttime DESC
-EOS
-    find_by_sql(sql)
-  end
-end

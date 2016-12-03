@@ -17,8 +17,6 @@ require 'redshift'
 require 'redshift_base'
 require 'sql'
 require 'pg_table_def'
-require 'stl_error'
-require 'stl_load_error'
 require 'stl_query'
 require 'stv_inflight'
 require 'svl_qlog'
@@ -113,7 +111,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/stl_load_errors' do
-    @errors = StlLoadError.find_with_table_info
+    @errors = RedshiftBase.execute(SQL.text('stl_load_errors.sql'))
     slim :stl_load_errors
   end
 
