@@ -14,13 +14,14 @@ require './helpers/cosmetic_helper'
 
 $LOAD_PATH << './models'
 require 'redshift'
+require 'redshift_base'
+require 'sql'
 require 'pg_user'
 require 'pg_table_def'
 require 'stl_error'
 require 'stl_load_error'
 require 'stl_query'
 require 'stv_inflight'
-require 'stv_wlm_service_class_state'
 require 'svl_qlog'
 require 'svl_statementtext'
 require 'svv_table_info'
@@ -69,7 +70,8 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/service_class_states' do
-    @service_class_states = StvWlmServiceClassState.all
+    sql = SQL.text('service_class_states.sql')
+    @service_class_states = RedshiftBase.execute(sql)
     slim :service_class_state
   end
 
