@@ -16,7 +16,6 @@ $LOAD_PATH << './models'
 require 'redshift'
 require 'redshift_base'
 require 'sql'
-require 'pg_user'
 require 'pg_table_def'
 require 'stl_error'
 require 'stl_load_error'
@@ -104,7 +103,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/users' do
-    @users = PgUser.find_with_summary
+    @users = RedshiftBase.execute(SQL.text('users.sql'))
     slim :users
   end
 

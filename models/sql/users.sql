@@ -1,10 +1,3 @@
-# frozen_string_literal: true
-
-class PgUser < Redshift
-  self.table_name = 'pg_user'
-
-  def self.find_with_summary
-    sql = <<'EOS'
 WITH queries AS (
   SELECT
     userid,
@@ -25,8 +18,5 @@ FROM
   pg_user
   LEFT JOIN queries ON
     pg_user.usesysid = queries.userid
-ORDER BY id
-EOS
-    find_by_sql(sql)
-  end
-end
+ORDER BY
+  id
