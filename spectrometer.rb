@@ -16,10 +16,8 @@ $LOAD_PATH << './models'
 require 'redshift'
 require 'redshift_base'
 require 'sql'
-require 'pg_table_def'
 require 'stv_inflight'
 require 'svl_statementtext'
-require 'svv_table_info'
 require 'stl_utilitytext'
 require 'stl_vacuum'
 
@@ -51,9 +49,16 @@ class Spectrometer < Sinatra::Base
     slim :schema_tables
   end
 
-  get '/tables/:id' do |table_id|
-    @table = SvvTableInfo.extended_info(table_id).first
-    @table_defs = PgTableDef.find_columns(@table.schema, @table.tablename)
+  get '/tables/:id' do |id|
+    conn = RedshiftBase.connection
+    table_id = conn.quote(id)
+    sql = SQL.text('table_info.sql').sub('__table_id__', table_id)
+    @table = conn.select_all(sql).first
+
+    sql = SQL.text('table_defs.sql')
+      .sub('__schema__', @table['schema'])
+      .sub('__tablename__', @table['tablename'])
+    @table_defs = conn.select_all(sql)
     slim :table_info
   end
 
