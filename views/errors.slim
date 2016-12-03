@@ -13,9 +13,9 @@ div class='column'
     tbody
       - @errors.each do |error|
         tr
-          td = error.userid
-          td = error.username
-          td = error.process
-          td = error.recordtime.local_timestamp
-          td = error.errcode
-          td = error.error_message
+          td = error['userid']
+          td = error['username']
+          td = error['process']
+          td = error['recordtime']
+          td = error['errcode']
+          td = error['error_message']

@@ -108,7 +108,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/errors' do
-    @errors = StlError.find_join_user
+    @errors = RedshiftBase.execute(SQL.text('errors.sql'))
     slim :errors
   end
 
