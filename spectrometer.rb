@@ -28,7 +28,6 @@ require 'svv_table_info'
 require 'stl_utilitytext'
 require 'stv_tbl_perm'
 require 'stl_vacuum'
-require 'stl_wlm_query'
 
 ENV['TZ'] = 'Asia/Tokyo'
 
@@ -65,7 +64,8 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/query_timelines' do
-    @queries = StlWLMQuery.find_recents
+    sql = SQL.text('query_timelines.sql')
+    @queries = RedshiftBase.execute(sql)
     slim :query_timelines
   end
 
