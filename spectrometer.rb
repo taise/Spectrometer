@@ -17,7 +17,6 @@ require 'redshift'
 require 'redshift_base'
 require 'sql'
 require 'pg_table_def'
-require 'stl_query'
 require 'stv_inflight'
 require 'svl_qlog'
 require 'svl_statementtext'
@@ -73,8 +72,8 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/stats_queries' do
-    @queries_per_minute = StlQuery.queries_per_minute
-    @queries_per_10_minutes = StlQuery.queries_per_10_minutes
+    @queries_1m = RedshiftBase.execute(SQL.text('stats_queries_1m.sql'))
+    @queries_10m = RedshiftBase.execute(SQL.text('stats_queries_10m.sql'))
     slim :stats_queries
   end
 

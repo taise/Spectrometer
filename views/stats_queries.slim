@@ -6,15 +6,15 @@ div class='column'
   p updated at: #{Time.now.local_timestamp}
 
   h2 class=['title', 'is-4'] Num of Queries / min
-  == line_chart @queries_per_minute.map { |q| [q.started_at, q.query_count] }
+  == line_chart @queries_1m.map { |q| [q['started_at'], q['query_count']] }
 
   h2 class=['title', 'is-4'] Num of UU / min
-  == line_chart @queries_per_minute.map { |q| [q.started_at, q.uu_count] }
+  == line_chart @queries_1m.map { |q| [q['started_at'], q['uu_count']] }
 
 
   h2 class=['title', 'is-4'] Num of Queries / 10 minutes
-  == line_chart @queries_per_10_minutes.map { |q| [q.started_at, q.query_count] }
+  == line_chart @queries_10m.map { |q| [q['started_at'], q['query_count']] }
 
   h2 class=['title', 'is-4'] Num of UU / 10 minutes
-  == line_chart @queries_per_10_minutes.map { |q| [q.started_at, q.uu_count] }
+  == line_chart @queries_10m.map { |q| [q['started_at'], q['uu_count']] }
 
