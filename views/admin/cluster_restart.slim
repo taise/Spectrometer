@@ -9,5 +9,5 @@ div class='column'
     tbody
       - @queries.each do |query|
         tr
-          td = query.current_ts
-          td = query.restart_ts
+          td = query['current_ts']
+          td = query['restart_ts']

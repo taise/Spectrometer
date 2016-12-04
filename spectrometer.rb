@@ -18,7 +18,6 @@ require 'redshift_base'
 require 'sql'
 require 'stv_inflight'
 require 'svl_statementtext'
-require 'stl_utilitytext'
 require 'stl_vacuum'
 
 ENV['TZ'] = 'Asia/Tokyo'
@@ -121,7 +120,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/admin/cluster_restart' do
-    @queries = StlUtilitytext.find_cluster_restart
+    @queries = RedshiftBase.execute(SQL.text('cluster_restart.sql'))
     slim :'admin/cluster_restart'
   end
 
