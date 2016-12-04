@@ -17,7 +17,6 @@ require 'redshift'
 require 'redshift_base'
 require 'sql'
 require 'stv_inflight'
-require 'svl_statementtext'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
@@ -86,10 +85,16 @@ class Spectrometer < Sinatra::Base
     slim :slow_queries
   end
 
-  get '/detail_query/:xid' do |xid|
-    queries = SvlStatementtext.find_query_full_text(xid)
+  get '/detail_query/:id' do |id|
+    conn = RedshiftBase.connection
+    xid = conn.quote(id)
+    sql = SQL.text('detail_query.sql').sub('__xid__', xid)
+    queries = conn.execute(sql)
+
     @query = queries.first
-    @sql = queries.map(&:text).reduce('') { |sql, text| sql + text }.gsub('\\n', "\r")
+    @sql = queries.map { |q| q['text'] }
+                  .reduce('') { |sql, text| sql + text }
+                  .gsub('\\n', "\r")
     slim :detail_query
   end
 

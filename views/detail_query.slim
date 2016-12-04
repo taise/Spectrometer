@@ -5,28 +5,29 @@ div class='column'
     tbody
         tr
           td userid
-          td = @query.userid
+          td = @query['userid']
         tr
           td user_name
-          td = @query.user_name
+          td = @query['user_name']
         tr
           td xid
-          td = @query.xid
+          td = @query['xid']
         tr
           td pid
-          td = @query.pid
+          td = @query['pid']
         tr
+          - elapsed_time = @query['elapsed_time'].to_i
           td elapsed_time
-          td = @query.elapsed_time
+          td = "#{elapsed_time / 60}:#{format('%02d', elapsed_time % 60)}"
         tr
           td starttime
-          td = @query.starttime
+          td = @query['starttime']
         tr
           td endtime
-          td = @query.endtime
+          td = @query['endtime']
         tr
           td query_type
-          td = @query.query_type
+          td = @query['query_type']
         tr
           td SQL
           td

@@ -30,6 +30,7 @@ FROM
   INNER JOIN pg_user
     ON queries.userid = pg_user.usesysid
 ORDER BY
+  starttime,
   "sequence"
 ;
 EOS
