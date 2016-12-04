@@ -39,12 +39,12 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/schema_tables' do
-    @schema_tables = RedshiftBase.execute(SQL.text('schema_tables.sql'))
+    @schema_tables = Redshift.execute(SQL.text('schema_tables.sql'))
     slim :schema_tables
   end
 
   get '/tables/:id' do |id|
-    conn = RedshiftBase.connection
+    conn = Redshift.connection
     table_id = conn.quote(id)
     sql = SQL.text('table_info.sql').sub('__table_id__', table_id)
     @table = conn.select_all(sql).first
@@ -57,33 +57,33 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/query_timelines' do
-    @queries = RedshiftBase.execute(SQL.text('query_timelines.sql'))
+    @queries = Redshift.execute(SQL.text('query_timelines.sql'))
     slim :query_timelines
   end
 
   get '/service_class_states' do
-    @service_class_states = RedshiftBase.execute(SQL.text('service_class_states.sql'))
+    @service_class_states = Redshift.execute(SQL.text('service_class_states.sql'))
     slim :service_class_state
   end
 
   get '/stats_queries' do
-    @queries_1m = RedshiftBase.execute(SQL.text('stats_queries_1m.sql'))
-    @queries_10m = RedshiftBase.execute(SQL.text('stats_queries_10m.sql'))
+    @queries_1m = Redshift.execute(SQL.text('stats_queries_1m.sql'))
+    @queries_10m = Redshift.execute(SQL.text('stats_queries_10m.sql'))
     slim :stats_queries
   end
 
   get '/inflight_queries' do
-    @queries = RedshiftBase.execute(SQL.text('inflight_queries.sql'))
+    @queries = Redshift.execute(SQL.text('inflight_queries.sql'))
     slim :inflight_queries
   end
 
   get '/slow_queries' do
-    @queries = RedshiftBase.execute(SQL.text('slow_queries.sql'))
+    @queries = Redshift.execute(SQL.text('slow_queries.sql'))
     slim :slow_queries
   end
 
   get '/detail_query/:id' do |id|
-    conn = RedshiftBase.connection
+    conn = Redshift.connection
     xid = conn.quote(id)
     sql = SQL.text('detail_query.sql').sub('__xid__', xid)
     queries = conn.execute(sql)
@@ -97,41 +97,41 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/stats_off' do
-    @tables = RedshiftBase.execute(SQL.text('stats_off.sql'))
+    @tables = Redshift.execute(SQL.text('stats_off.sql'))
     slim :stats_off
   end
 
   get '/users' do
-    @users = RedshiftBase.execute(SQL.text('users.sql'))
+    @users = Redshift.execute(SQL.text('users.sql'))
     slim :users
   end
 
   get '/errors' do
-    @errors = RedshiftBase.execute(SQL.text('errors.sql'))
+    @errors = Redshift.execute(SQL.text('errors.sql'))
     slim :errors
   end
 
   get '/stl_load_errors' do
-    @errors = RedshiftBase.execute(SQL.text('stl_load_errors.sql'))
+    @errors = Redshift.execute(SQL.text('stl_load_errors.sql'))
     slim :stl_load_errors
   end
 
   get '/admin/vacuum_results' do
-    @tables = RedshiftBase.execute(SQL.text('vacuum_results.sql'))
+    @tables = Redshift.execute(SQL.text('vacuum_results.sql'))
     slim :'admin/vacuum_results'
   end
 
   get '/admin/cluster_restart' do
-    @queries = RedshiftBase.execute(SQL.text('cluster_restart.sql'))
+    @queries = Redshift.execute(SQL.text('cluster_restart.sql'))
     slim :'admin/cluster_restart'
   end
 
   post '/cancel' do
-    conn = RedshiftBase.connection
+    conn = Redshift.connection
     redirect '/' if params[:pid].nil?
 
     pid = conn.quote(params[:pid].to_i)
-    p RedshiftBase.execute("CANCEL #{pid}")
+    p Redshift.execute("CANCEL #{pid}")
     redirect '/inflight_queries'
   end
 

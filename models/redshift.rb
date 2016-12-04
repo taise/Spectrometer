@@ -2,7 +2,7 @@
 require 'yaml'
 require 'active_record'
 
-class RedshiftBase
+class Redshift
   CONFIG = YAML.load_file('./config/database.yml')[ENV['RACK_ENV']]
   ActiveRecord::Base.establish_connection(CONFIG)
 
