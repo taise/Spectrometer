@@ -92,6 +92,7 @@ class Spectrometer < Sinatra::Base
     queries = conn.execute(sql)
 
     @query = queries.first
+    @sql_group = queries.group_by { |q| q['starttime'] }
     @sql = queries.map { |q| q['text'] }
                   .reduce('') { |sql, text| sql + text }
                   .gsub('\\n', "\r")
