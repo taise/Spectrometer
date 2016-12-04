@@ -16,18 +16,17 @@ div class='column'
     tbody
       - @queries.each do |query|
         tr
-          td = query.pid
-          td = query.user
-          td = query.state
+          td = query['pid']
+          td = query['user']
+          td = query['state']
+          td = query['xid']
           td
-            a href="/detail_query/#{query.xid}" = query.xid
-          td
-            div class=('tag is-danger' if query.exec_time > 5.minutes.to_i)
-              = query.exec_time
-          td = query.queue_time
-          td = query.starttime.local_timestamp
-          td = query.text
+            div class=('tag is-danger' if query['exec_time'].to_i > 5.minutes.to_i)
+              = query['exec_time']
+          td = query['queue_time']
+          td = local_timestamp(query['starttime'])
+          td = query['text']
           td
             form action='/cancel' method='post' enctype='multipart/form-data'
-              input type='hidden' name='pid' value="#{query.pid}"
+              input type='hidden' name='pid' value="#{query['pid']}"
               input type='submit' value='Cancel' onClick='return confirm("Are you sure?")'

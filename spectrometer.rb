@@ -13,10 +13,8 @@ require './lib/time'
 require './helpers/cosmetic_helper'
 
 $LOAD_PATH << './models'
-require 'redshift'
 require 'redshift_base'
 require 'sql'
-require 'stv_inflight'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
@@ -76,7 +74,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/inflight_queries' do
-    @queries = StvInflight.find_running_queries
+    @queries = RedshiftBase.execute(SQL.text('inflight_queries.sql'))
     slim :inflight_queries
   end
 
@@ -130,9 +128,11 @@ class Spectrometer < Sinatra::Base
   end
 
   post '/cancel' do
-    pid = params[:pid]
-    redirect '/' if pid.nil?
-    StvInflight.cancel(pid)
+    conn = RedshiftBase.connection
+    redirect '/' if params[:pid].nil?
+
+    pid = conn.quote(params[:pid].to_i)
+    p RedshiftBase.execute("CANCEL #{pid}")
     redirect '/inflight_queries'
   end
 

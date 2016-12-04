@@ -1,11 +1,3 @@
-# frozen_string_literal: true
-
-class StvInflight < Redshift
-  self.table_name = 'stv_inflight'
-
-  # TODO: using ActiveRecord::QueryMethods
-  def self.find_running_queries
-    sql = <<'EOS'
 SELECT
   si.pid,
   u.usename AS user,
@@ -23,13 +15,3 @@ FROM
     ON u.usesysid = si.userid
 ORDER BY
   starttime
-EOS
-    find_by_sql(sql)
-  end
-
-  def self.cancel(pid)
-    res = connection.execute("CANCEL #{pid}")
-    p res
-    res
-  end
-end
