@@ -13,7 +13,6 @@ require './lib/time'
 require './helpers/cosmetic_helper'
 
 require './models/redshift'
-require './models/sql'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
@@ -39,7 +38,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/schema_tables' do
-    @schema_tables = Redshift.execute(SQL.text('schema_tables.sql'))
+    @schema_tables = Redshift.execute_text('schema_tables.sql')
     slim :schema_tables
   end
 
@@ -57,28 +56,28 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/query_timelines' do
-    @queries = Redshift.execute(SQL.text('query_timelines.sql'))
+    @queries = Redshift.execute_text('query_timelines.sql')
     slim :query_timelines
   end
 
   get '/service_class_states' do
-    @service_class_states = Redshift.execute(SQL.text('service_class_states.sql'))
+    @service_class_states = Redshift.execute_text('service_class_states.sql')
     slim :service_class_state
   end
 
   get '/stats_queries' do
-    @queries_1m = Redshift.execute(SQL.text('stats_queries_1m.sql'))
-    @queries_10m = Redshift.execute(SQL.text('stats_queries_10m.sql'))
+    @queries_1m = Redshift.execute_text('stats_queries_1m.sql')
+    @queries_10m = Redshift.execute_text('stats_queries_10m.sql')
     slim :stats_queries
   end
 
   get '/inflight_queries' do
-    @queries = Redshift.execute(SQL.text('inflight_queries.sql'))
+    @queries = Redshift.execute_text('inflight_queries.sql')
     slim :inflight_queries
   end
 
   get '/slow_queries' do
-    @queries = Redshift.execute(SQL.text('slow_queries.sql'))
+    @queries = Redshift.execute_text('slow_queries.sql')
     slim :slow_queries
   end
 
@@ -97,32 +96,32 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/stats_off' do
-    @tables = Redshift.execute(SQL.text('stats_off.sql'))
+    @tables = Redshift.execute_text('stats_off.sql')
     slim :stats_off
   end
 
   get '/users' do
-    @users = Redshift.execute(SQL.text('users.sql'))
+    @users = Redshift.execute_text('users.sql')
     slim :users
   end
 
   get '/errors' do
-    @errors = Redshift.execute(SQL.text('errors.sql'))
+    @errors = Redshift.execute_text('errors.sql')
     slim :errors
   end
 
   get '/stl_load_errors' do
-    @errors = Redshift.execute(SQL.text('stl_load_errors.sql'))
+    @errors = Redshift.execute_text('stl_load_errors.sql')
     slim :stl_load_errors
   end
 
   get '/admin/vacuum_results' do
-    @tables = Redshift.execute(SQL.text('vacuum_results.sql'))
+    @tables = Redshift.execute_text('vacuum_results.sql')
     slim :'admin/vacuum_results'
   end
 
   get '/admin/cluster_restart' do
-    @queries = Redshift.execute(SQL.text('cluster_restart.sql'))
+    @queries = Redshift.execute_text('cluster_restart.sql')
     slim :'admin/cluster_restart'
   end
 
