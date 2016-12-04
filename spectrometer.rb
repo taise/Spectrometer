@@ -18,7 +18,6 @@ require 'redshift_base'
 require 'sql'
 require 'stv_inflight'
 require 'svl_statementtext'
-require 'stl_vacuum'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
@@ -115,7 +114,7 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/admin/vacuum_results' do
-    @tables = StlVacuum.find_results
+    @tables = RedshiftBase.execute(SQL.text('vacuum_results.sql'))
     slim :'admin/vacuum_results'
   end
 
