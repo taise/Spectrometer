@@ -7,7 +7,14 @@ div class='column'
     div class='column'
       p updated at: #{Time.now.local_timestamp}
   div class='columns'
-    == timeline @queries.map { |q| [q.user_name, q.exec_start_time.to_s(:db), (q.exec_end_time || Time.now.utc).to_s(:db)] }, height: "450px"
+    - rows = @queries.map do |q| \
+        [ \
+          q['user_name'], \
+          local_timestamp(q['exec_start_time']), \
+          local_timestamp(q['exec_end_time'] || Time.now.utc) \
+        ] \
+      end
+    == timeline rows, height: "450px"
   div class='columns'
     table class='table'
       thead
@@ -24,12 +31,12 @@ div class='column'
       tbody
         - @queries.each do |query|
           tr
-            td = query.user_name
-            td = query.state
-            td = query.query_id
-            td = query.total_exec_time_sec
-            td = query.total_queue_time_sec
-            td = query.queue_start_time.try(:local_timestamp)
-            td = query.queue_end_time.try(:local_timestamp)
-            td = query.exec_start_time.try(:local_timestamp)
-            td = query.exec_end_time.try(:local_timestamp)
+            td = query['user_name']
+            td = query['state']
+            td = query['query_id']
+            td = query['total_exec_time_sec']
+            td = query['total_queue_time_sec']
+            td = local_timestamp(query['queue_start_time'])
+            td = local_timestamp(query['queue_end_time'])
+            td = local_timestamp(query['exec_start_time'])
+            td = local_timestamp(query['exec_end_time'])

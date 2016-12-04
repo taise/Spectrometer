@@ -16,13 +16,13 @@ div class='column'
     tbody
       - @tables.each do |table|
         tr
-          td = table.userid
+          td = table['userid']
           td
-            a href="/tables/#{table.table_id}" = table.table_id
-          td = table.schema_name + '.' + short_name(table.table_name)
-          td = table.start_status
-          td = table.end_status
-          td = table.start_time.local_timestamp
-          td = table.rows_deleted
-          td = table.blocks_deleted_added
-          td = table.processing_seconds
+            a href="/tables/#{table['table_id']}" = table['table_id']
+          td = table['schema_name'] + '.' + short_name(table['table_name'])
+          td = table['start_status']
+          td = table['end_status']
+          td = local_timestamp(table['start_time'])
+          td = table['rows_deleted']
+          td = table['blocks_deleted_added']
+          td = table['processing_seconds']

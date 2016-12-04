@@ -1,10 +1,3 @@
-# frozen_string_literal: true
-
-class StlWLMQuery < Redshift
-  self.table_name = 'stl_wlm_query'
-
-  def self.find_recents
-    sql = <<'EOS'
 WITH wlm_queries AS (
   SELECT
     service_class,
@@ -71,9 +64,3 @@ FROM
 ORDER BY
   service_class,
   queue_start_time
-;
-
-EOS
-    find_by_sql(sql)
-  end
-end

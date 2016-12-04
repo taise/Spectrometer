@@ -1,10 +1,3 @@
-# frozen_string_literal: true
-
-class StlVacuum < Redshift
-  self.table_name = 'stl_vacuum'
-
-  def self.find_results
-    sql = <<'EOS'
 WITH tables AS (
   SELECT
     DISTINCT TRIM(pgn.nspname) AS schema_name,
@@ -42,7 +35,3 @@ WHERE
   AND vac_start.status != 'Finished'
 ORDER BY
   start_time DESC
-EOS
-    find_by_sql(sql)
-  end
-end

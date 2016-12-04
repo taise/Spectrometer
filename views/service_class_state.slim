@@ -13,9 +13,9 @@ div class='column'
     tbody
       - @service_class_states.each do |state|
         tr
-          td = state.service_class
-          td = state.num_queued_queries
-          td = state.num_executing_queries
-          td = state.num_serviced_queries
-          td = state.num_executed_queries
-          td = state.num_evicted_queries
+          td = state['service_class']
+          td = state['num_queued_queries']
+          td = state['num_executing_queries']
+          td = state['num_serviced_queries']
+          td = state['num_executed_queries']
+          td = state['num_evicted_queries']

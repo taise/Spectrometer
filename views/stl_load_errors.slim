@@ -18,14 +18,14 @@ div class='column'
     tbody
       - @errors.each do |error|
         tr
-          td = error.userid
-          td = error.schema
-          td = error.table_name
-          td = error.starttime.local_timestamp
-          td = error.line_number
-          td = error.colname
-          td = error.column_type
-          td = error.col_length
-          td = error.position
-          td = error.raw_field_value
-          td = error.err_reason
+          td = error['userid']
+          td = error['schema']
+          td = error['table_name']
+          td = local_timestamp(error['starttime'])
+          td = error['line_number']
+          td = error['colname']
+          td = error['column_type']
+          td = error['col_length']
+          td = error['position']
+          td = error['raw_field_value']
+          td = error['err_reason']

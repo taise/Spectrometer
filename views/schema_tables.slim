@@ -14,14 +14,14 @@ div class='column'
     tbody
       - @schema_tables.each do |schema_table|
         tr
-          td = schema_table.database_name
-          td = schema_table.schema_name
-          - if schema_table.schema_name && schema_table.tablename
+          td = schema_table['database_name']
+          td = schema_table['schema_name']
+          - if schema_table['schema_name'] && schema_table['tablename']
             td
-              a href="/tables/#{schema_table.table_id}" = schema_table.table_id
+              a href="/tables/#{schema_table['table_id']}" = schema_table['table_id']
           - else
-            td = schema_table.table_id
-          td = schema_table.tablename
-          td style='text-align: right;' = schema_table.mbytes
-          td style='text-align: right;' = schema_table.rows
-          td = schema_table.owner
+            td = schema_table['table_id']
+          td = schema_table['tablename']
+          td style='text-align: right;' = schema_table['mbytes']
+          td style='text-align: right;' = schema_table['rows']
+          td = schema_table['owner']

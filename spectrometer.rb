@@ -12,25 +12,10 @@ require './lib/redshift_metric'
 require './lib/time'
 require './helpers/cosmetic_helper'
 
-$LOAD_PATH << './models'
-require 'redshift'
-require 'pg_user'
-require 'pg_table_def'
-require 'stl_error'
-require 'stl_load_error'
-require 'stl_query'
-require 'stv_inflight'
-require 'stv_wlm_service_class_state'
-require 'svl_qlog'
-require 'svl_statementtext'
-require 'svv_table_info'
-require 'stl_utilitytext'
-require 'stv_tbl_perm'
-require 'stl_vacuum'
-require 'stl_wlm_query'
+require './models/redshift'
 
 ENV['TZ'] = 'Asia/Tokyo'
-
+# Spectator Controller
 class Spectrometer < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
@@ -53,83 +38,99 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/schema_tables' do
-    @schema_tables = StvTblPerm.find_tables
+    @schema_tables = Redshift.execute_text('schema_tables.sql')
     slim :schema_tables
   end
 
-  get '/tables/:id' do |table_id|
-    @table = SvvTableInfo.extended_info(table_id).first
-    @table_defs = PgTableDef.find_columns(@table.schema, @table.tablename)
+  get '/tables/:id' do |id|
+    conn = Redshift.connection
+    table_id = conn.quote(id)
+    sql = SQL.text('table_info.sql').sub('__table_id__', table_id)
+    @table = conn.select_all(sql).first
+
+    sql = SQL.text('table_defs.sql')
+             .sub('__schema__', @table['schema'])
+             .sub('__tablename__', @table['tablename'])
+    @table_defs = conn.select_all(sql)
     slim :table_info
   end
 
   get '/query_timelines' do
-    @queries = StlWLMQuery.find_recents
+    @queries = Redshift.execute_text('query_timelines.sql')
     slim :query_timelines
   end
 
   get '/service_class_states' do
-    @service_class_states = StvWlmServiceClassState.all
+    @service_class_states = Redshift.execute_text('service_class_states.sql')
     slim :service_class_state
   end
 
   get '/stats_queries' do
-    @queries_per_minute = StlQuery.queries_per_minute
-    @queries_per_10_minutes = StlQuery.queries_per_10_minutes
+    @queries_1m = Redshift.execute_text('stats_queries_1m.sql')
+    @queries_10m = Redshift.execute_text('stats_queries_10m.sql')
     slim :stats_queries
   end
 
   get '/inflight_queries' do
-    @queries = StvInflight.find_running_queries
+    @queries = Redshift.execute_text('inflight_queries.sql')
     slim :inflight_queries
   end
 
   get '/slow_queries' do
-    @queries = SvlQlog.find_slow_queries
+    @queries = Redshift.execute_text('slow_queries.sql')
     slim :slow_queries
   end
 
-  get '/detail_query/:xid' do |xid|
-    queries = SvlStatementtext.find_query_full_text(xid)
+  get '/detail_query/:id' do |id|
+    conn = Redshift.connection
+    xid = conn.quote(id)
+    sql = SQL.text('detail_query.sql').sub('__xid__', xid)
+    queries = conn.execute(sql)
+
     @query = queries.first
-    @sql = queries.map(&:text).reduce('') { |sql, text| sql + text }.gsub('\\n', "\r")
+    @sql_group = queries.group_by { |q| q['starttime'] }
+    @sql = queries.map { |q| q['text'] }
+                  .reduce('') { |sql, text| sql + text }
+                  .gsub('\\n', "\r")
     slim :detail_query
   end
 
   get '/stats_off' do
-    @tables = SvvTableInfo.find_stats_off
+    @tables = Redshift.execute_text('stats_off.sql')
     slim :stats_off
   end
 
   get '/users' do
-    @users = PgUser.find_with_summary
+    @users = Redshift.execute_text('users.sql')
     slim :users
   end
 
   get '/errors' do
-    @errors = StlError.find_join_user
+    @errors = Redshift.execute_text('errors.sql')
     slim :errors
   end
 
   get '/stl_load_errors' do
-    @errors = StlLoadError.find_with_table_info
+    @errors = Redshift.execute_text('stl_load_errors.sql')
     slim :stl_load_errors
   end
 
   get '/admin/vacuum_results' do
-    @tables = StlVacuum.find_results
+    @tables = Redshift.execute_text('vacuum_results.sql')
     slim :'admin/vacuum_results'
   end
 
   get '/admin/cluster_restart' do
-    @queries = StlUtilitytext.find_cluster_restart
+    @queries = Redshift.execute_text('cluster_restart.sql')
     slim :'admin/cluster_restart'
   end
 
   post '/cancel' do
-    pid = params[:pid]
-    redirect '/' if pid.nil?
-    StvInflight.cancel(pid)
+    conn = Redshift.connection
+    redirect '/' if params[:pid].nil?
+
+    pid = conn.quote(params[:pid].to_i)
+    p Redshift.execute("CANCEL #{pid}")
     redirect '/inflight_queries'
   end
 

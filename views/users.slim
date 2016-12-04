@@ -12,7 +12,7 @@ div class='column'
     tbody
       - @users.each do |user|
         tr
-          td = user.id
-          td = user.name
-          td = user.count_query
-          td = user.last_at&.local_timestamp
+          td = user['id']
+          td = user['name']
+          td = user['count_query']
+          td = local_timestamp(user['last_at'])
