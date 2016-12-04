@@ -12,9 +12,8 @@ require './lib/redshift_metric'
 require './lib/time'
 require './helpers/cosmetic_helper'
 
-$LOAD_PATH << './models'
-require 'redshift_base'
-require 'sql'
+require './models/redshift'
+require './models/sql'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
