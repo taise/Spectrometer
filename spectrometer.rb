@@ -18,7 +18,7 @@ class Spectrometer < Sinatra::Base
   helpers Sinatra::CosmeticHelper
 
   get '/' do
-    slim :index
+    redirect '/performances'
   end
 
   get '/performances' do
@@ -27,12 +27,6 @@ class Spectrometer < Sinatra::Base
       start_time: params['start_time'],
       period:     params['period']
     }
-    slim :performances
-  end
-
-  get '/performances_short' do
-    # TODO: async requests to Aws::CloudWatch::Metric
-    @args = { start_time: 2.hours.ago, period: 60 }
     slim :performances
   end
 
