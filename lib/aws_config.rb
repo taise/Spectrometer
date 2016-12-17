@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'yaml'
-require 'aws-sdk'
 
 class AwsConfig
   def self.valid?

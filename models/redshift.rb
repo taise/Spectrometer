@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-require 'yaml'
-require 'active_record'
-
 require_relative 'sql'
 
 class Redshift

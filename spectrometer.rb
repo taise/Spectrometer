@@ -3,11 +3,10 @@
 Bundler.require
 require 'active_support/core_ext'
 
-require './lib/redshift_metric'
-require './lib/time'
-require './helpers/cosmetic_helper'
-
-require './models/redshift'
+require_relative 'lib/redshift_metric'
+require_relative 'lib/time'
+require_relative 'helpers/cosmetic_helper'
+require_relative 'models/redshift'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
