@@ -1,23 +1,18 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'sinatra/base'
-require 'sinatra/reloader'
-require 'active_support'
+Bundler.require
 require 'active_support/core_ext'
-require 'slim'
-require 'chartkick'
 
-require './lib/redshift_metric'
-require './lib/time'
-require './helpers/cosmetic_helper'
-
-require './models/redshift'
+require_relative 'lib/redshift_metric'
+require_relative 'lib/time'
+require_relative 'helpers/cosmetic_helper'
+require_relative 'models/redshift'
 
 ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
 class Spectrometer < Sinatra::Base
   configure :development do
+    require 'sinatra/reloader'
     register Sinatra::Reloader
   end
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
-require './lib/aws_config'
-require 'active_support'
-require 'active_support/core_ext'
+require_relative 'aws_config'
 
 Aws.config.update(region: 'us-west-2',
                   credentials: AwsConfig.credentials)

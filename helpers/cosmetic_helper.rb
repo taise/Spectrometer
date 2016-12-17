@@ -1,5 +1,3 @@
-require 'sinatra/base'
-
 module Sinatra
   module CosmeticHelper
     def short_name(name)
