@@ -1,8 +1,10 @@
 aside class="menu"
   p class="menu-label" AWS Metrics
   ul class="menu-list"
-    li: a href='/performances' Performance Dashboard
-    li: a href='/performances_short' Performance Dashboard by 1min
+    li: a href='/performances?start_time=#{2.hours.ago}&period=60' 2 hours
+    li: a href='/performances' 12 hours
+    li: a href='/performances?start_time=#{3.days.ago}&period=#{60 * 60}' 3 days
+    li: a href='/performances?start_time=#{7.days.ago}&period=#{60 * 60 * 2}' 7 days
   p class="menu-label" Redshift Admin View
   ul class="menu-list"
     li: a href='/query_timelines' Query Timelines

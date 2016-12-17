@@ -5,34 +5,34 @@ div class='column'
   h1 class=['title', 'is-3'] Performance Dashboard
 
   h2 class=['title', 'is-4'] CPU Utilization
-  == line_chart RedshiftMetric.new('CPUUtilization').average, min: 0, max: 100
+  == line_chart RedshiftMetric.new('CPUUtilization').average_list(@args), min: 0, max: 100
 
   h2 class=['title', 'is-4'] Network Receive Throughput
-  == line_chart RedshiftMetric.new('NetworkReceiveThroughput').average
+  == line_chart RedshiftMetric.new('NetworkReceiveThroughput').average_list(@args)
 
   h2 class=['title', 'is-4'] Network Transmit Throughput
-  == line_chart RedshiftMetric.new('NetworkTransmitThroughput').average
+  == line_chart RedshiftMetric.new('NetworkTransmitThroughput').average_list(@args)
 
   h2 class=['title', 'is-4'] Write Throughput
-  == line_chart RedshiftMetric.new('WriteThroughput').average
+  == line_chart RedshiftMetric.new('WriteThroughput').average_list(@args)
 
   h2 class=['title', 'is-4'] Write Latency
-  == line_chart RedshiftMetric.new('WriteLatency').average
+  == line_chart RedshiftMetric.new('WriteLatency').average_list(@args)
 
   h2 class=['title', 'is-4'] Read Throughput
-  == line_chart RedshiftMetric.new('ReadThroughput').average
+  == line_chart RedshiftMetric.new('ReadThroughput').average_list(@args)
 
   h2 class=['title', 'is-4'] Read Latency
-  == line_chart RedshiftMetric.new('ReadLatency').average
+  == line_chart RedshiftMetric.new('ReadLatency').average_list(@args)
 
   h2 class=['title', 'is-4'] Database Connections
-  == line_chart RedshiftMetric.new('DatabaseConnections').average
+  == line_chart RedshiftMetric.new('DatabaseConnections').average_list(@args)
 
   h2 class=['title', 'is-4'] Health Status
-  == line_chart RedshiftMetric.new('HealthStatus').average
+  == line_chart RedshiftMetric.new('HealthStatus').max_list(@args), min: 0, max: 1
 
   h2 class=['title', 'is-4'] Maintenance Mode
-  == line_chart RedshiftMetric.new('MaintenanceMode').average
+  == line_chart RedshiftMetric.new('MaintenanceMode').average_list(@args)
 
   h2 class=['title', 'is-4'] Percentage Disk Space Used
-  == line_chart RedshiftMetric.new('PercentageDiskSpaceUsed').average, min: 0, max: 100
+  == line_chart RedshiftMetric.new('PercentageDiskSpaceUsed').average_list(@args), min: 0, max: 100

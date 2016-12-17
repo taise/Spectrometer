@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 require_relative 'aws_config'
 
-Aws.config.update(region: 'us-west-2',
-                  credentials: AwsConfig.credentials)
-
 class RedshiftMetric
+  Aws.config.update(region: 'us-west-2', credentials: AwsConfig.credentials)
+
   NAMESPACE = 'AWS/Redshift'
   DIMENSION_NAME = 'ClusterIdentifier'
   DIMENSION_VALUE = AwsConfig.cluster_identifier
 
+  attr_reader :name
   def initialize(name)
-    @metric = Aws::CloudWatch::Metric.new(NAMESPACE, name)
+    @name = name
+    @metric = Aws::CloudWatch::Metric.new(NAMESPACE, @name)
   end
 
   def get(args = {})
@@ -28,16 +29,13 @@ class RedshiftMetric
     ).datapoints
   end
 
-  def average
-    # get Average statistics & return data matrix
-    get(statistics: ['Average']).map { |dp| [dp.timestamp, dp.average] }
+  def average_list(args = {})
+    get(args).map { |dp| [dp.timestamp, dp.average] }
   end
 
-  def max_by_1_min
-    # get Average statistics & return data matrix
-    get(start_time: 2.hours.ago, statistics: ['Maximum'], period: 60).map do
-      |dp| [dp.timestamp, dp.maximum]
-    end
+  def max_list(args = {})
+    args = args.merge({ statistics: ['Maximum']})
+    get(args).map { |dp| [dp.timestamp, dp.maximum] }
   end
 
   def name=(name)

@@ -23,12 +23,17 @@ class Spectrometer < Sinatra::Base
 
   get '/performances' do
     # TODO: async requests to Aws::CloudWatch::Metric
+    @args = {
+      start_time: params['start_time'],
+      period:     params['period']
+    }
     slim :performances
   end
 
   get '/performances_short' do
     # TODO: async requests to Aws::CloudWatch::Metric
-    slim :performances_short
+    @args = { start_time: 2.hours.ago, period: 60 }
+    slim :performances
   end
 
   get '/schema_tables' do
