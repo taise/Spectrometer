@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/taise/activerecord4-redshift-adapter.git
+  remote: https://github.com/taise/activerecord4-redshift-adapter.git
   revision: 97886a1efe6ea0b91b782444dd04ffa4288e6a12
   specs:
     activerecord4-redshift-adapter (0.2.1)
@@ -44,7 +44,7 @@ GEM
     multi_json (1.12.1)
     parser (2.3.1.2)
       ast (~> 2.2)
-    pg (0.18.4)
+    pg (0.19.0)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)

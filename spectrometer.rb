@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'sinatra/base'
-require 'active_support'
+Bundler.require
 require 'active_support/core_ext'
-require 'slim'
-require 'chartkick'
 
 require './lib/redshift_metric'
 require './lib/time'
