@@ -16,10 +16,10 @@ class RedshiftMetric
 
   def get(args = {})
     @metric.get_statistics(
-      start_time: args[:start_time] || 12.hours.ago,
-      end_time: args[:end_time]     || Time.now,
-      statistics: args[:statistics] || ['Average'],
-      period: args[:period]         || 60 * 10,
+      start_time: args[:start_time].presence || 12.hours.ago,
+      end_time: args[:end_time].presence     || Time.now,
+      statistics: args[:statistics].presence || ['Average'],
+      period: args[:period].presence         || 60 * 10,
       dimensions: [
         {
           name:  DIMENSION_NAME,
