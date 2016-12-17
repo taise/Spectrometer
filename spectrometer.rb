@@ -2,7 +2,6 @@
 
 require 'yaml'
 require 'sinatra/base'
-require 'sinatra/reloader'
 require 'active_support'
 require 'active_support/core_ext'
 require 'slim'
@@ -18,6 +17,7 @@ ENV['TZ'] = 'Asia/Tokyo'
 # Spectator Controller
 class Spectrometer < Sinatra::Base
   configure :development do
+    require 'sinatra/reloader'
     register Sinatra::Reloader
   end
 

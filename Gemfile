@@ -5,7 +5,6 @@ ruby '2.3.2'
 
 gem 'puma', '~> 3.6'
 gem 'sinatra', '~> 1.4'
-gem 'sinatra-contrib', '~> 1.4'
 
 gem 'activerecord', '~> 4.2'
 gem 'activerecord4-redshift-adapter',
@@ -19,6 +18,7 @@ gem 'aws-sdk', '~> 2.3'
 gem 'chartkick'
 
 group :development do
+  gem 'sinatra-contrib', '~> 1.4'
   gem 'rubocop'
   gem 'pry'
 end
