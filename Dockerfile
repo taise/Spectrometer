@@ -17,7 +17,7 @@ RUN set -ex \
             g++ \
   && cd $APP_ROOT \
   && bundle config git.allow_insecure true \
-  && bundle install \
+  && bundle install --without development \
   && apk del ruby-bundle-deps
 
 CMD bundle exec rackup -p 9292 -o 0.0.0.0 -E production
