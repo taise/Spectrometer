@@ -6,33 +6,21 @@ AWS Redshift monitoring web console.
 
 ## Features
 
-* Redshift performance metrics by AWS CloudWatch
-* WLM queue state
-* Inflight queries
-* pg_user list
-* error list
+- Performance metrics(AWS CloudWatch)
+- Admin views
+    - WLM queue state
+    - Inflight queries
+    - Table list & definitions
+    - Slow queries
+    - Error list
 
 
-## Roadmap
+## Built with
 
-### Next Architecture
-
-* Reads the data regularly from Redshift, write to sqlite3
-* Show the data read from sqlite3 with ActiveRecord
-
-
-### Next Features
-
-* Notify slow queries
-* Chack overflowing WLM queue & notification
-
-
-## Built With
-
-* Ruby
-* Sinatra
-* Bulma (CSS Framework)
-* AWS Redshift
+- Ruby (2.3)
+    - Sinatra
+- Bulma (CSS Framework)
+- AWS Redshift
 
 ## Set up
 
@@ -87,7 +75,7 @@ AWS Redshift monitoring web console.
 
 ## Access
 
-[http://localhost:9292](http://localhost:9292)
+[http://localhost:9292](http://localhost:9292)  
 Login username & password are set `config/database.yml`.
 
 
