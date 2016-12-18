@@ -131,7 +131,7 @@ class Spectrometer < Sinatra::Base
     # login user/pass == database user/pass
     db = YAML.load_file('config/database.yml')[ENV['RACK_ENV']]
     app = Rack::Auth::Digest::MD5.new(super) do |username|
-      { db['username'] => db['password'] }[username]
+      { db['user'] => db['password'] }[username]
     end
     app.realm = 'Protected Area'
     app.opaque = 'secretkey'

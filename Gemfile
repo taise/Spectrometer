@@ -4,10 +4,7 @@ source 'https://rubygems.org'
 gem 'puma', '~> 3.6'
 gem 'sinatra', '~> 1.4'
 
-gem 'activerecord', '~> 4.2', :require => 'active_record'
-gem 'activerecord4-redshift-adapter',
-    github: 'taise/activerecord4-redshift-adapter'
-
+gem 'pg', '~> 0.19'
 gem 'activesupport', '~> 4.2', :require => 'active_support'
 
 gem 'slim'

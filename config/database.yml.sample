@@ -1,11 +1,12 @@
-development:
-  adapter: redshift
+default: &default
   host: your_cluster_name.hashhash.ap-northeast-1.redshift.amazonaws.com
   port: 5439
-  database: dev
-  username: your_user
+  dbname: dev
+  user: your_user
   password: your_password
-  encoding: utf8
-  pool: 3
-  schema_search_path: 'public, admin'
-  timeout: 5000
+
+development:
+  <<: *default
+
+production:
+  <<: *default
