@@ -5,7 +5,7 @@ module Sinatra
     end
 
     def local_timestamp(time_str)
-      Time.parse(time_str).local_timestamp
+      Time.parse(time_str).getlocal.strftime('%FT%H:%M:%S')
     rescue
       nil
     end
