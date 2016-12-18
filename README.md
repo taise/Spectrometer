@@ -32,6 +32,8 @@ AWS Redshift monitoring web console.
 
 2. Set `config/database.yml`
 
+  This user needs superuser priviledges.
+
   ```
   cd /path/to/project
   cp config/database.yml.sample config/database.yml
