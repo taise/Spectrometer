@@ -6,11 +6,10 @@ class Redshift
   CONFIG = YAML.load_file('./config/database.yml')[ENV['RACK_ENV']]
 
   def self.connection
-    ActiveRecord::Base.connection
+    PGconn.open(CONFIG)
   end
 
   def self.execute(sql)
-    connection = PGconn.open(CONFIG)
     connection.exec(sql)
   end
 

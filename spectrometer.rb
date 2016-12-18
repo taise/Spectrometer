@@ -36,15 +36,14 @@ class Spectrometer < Sinatra::Base
   end
 
   get '/tables/:id' do |id|
-    conn = Redshift.connection
-    table_id = conn.quote(id)
-    sql = SQL.text('table_info.sql').sub('__table_id__', table_id)
-    @table = conn.select_all(sql).first
+    # TODO: SQL injection prevention
+    sql = SQL.text('table_info.sql').sub('__table_id__', id)
+    @table = Redshift.execute(sql).first
 
     sql = SQL.text('table_defs.sql')
              .sub('__schema__', @table['schema'])
              .sub('__tablename__', @table['tablename'])
-    @table_defs = conn.select_all(sql)
+    @table_defs = Redshift.execute(sql)
     slim :table_info
   end
 
@@ -74,11 +73,10 @@ class Spectrometer < Sinatra::Base
     slim :slow_queries
   end
 
-  get '/detail_query/:id' do |id|
-    conn = Redshift.connection
-    xid = conn.quote(id)
+  get '/detail_query/:id' do |xid|
+    # TODO: SQL injection prevention
     sql = SQL.text('detail_query.sql').sub('__xid__', xid)
-    queries = conn.execute(sql)
+    queries = Redshift.execute(sql)
 
     @query = queries.first
     @sql_group = queries.group_by { |q| q['starttime'] }
