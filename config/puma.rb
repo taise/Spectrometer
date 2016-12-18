@@ -7,3 +7,7 @@ preload_app!
 rackup      DefaultRackup
 port        ENV['PORT']     || 4567
 environment ENV['RACK_ENV'] || 'development'
+plugin :tmp_restart
+
+# TODO: logging
+# TODO: daemonize

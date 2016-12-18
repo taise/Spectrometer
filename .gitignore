@@ -1,5 +1,6 @@
-.bundle
-vendor/bundle
-tmp
-config/database.yml
-config/aws.yml
+/.bundle
+/bin
+/vendor/bundle
+/tmp
+/config/database.yml
+/config/aws.yml

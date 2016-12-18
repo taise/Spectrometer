@@ -34,8 +34,7 @@ AWS Redshift monitoring web console.
 * Bulma (CSS Framework)
 * AWS Redshift
 
-
-## Installation (local)
+## Set up
 
 1. Clone Spectrometer
 
@@ -56,26 +55,40 @@ AWS Redshift monitoring web console.
   cp config/aws.yml.sample config/aws.yml
   ```
 
-4. Bundle install
+## Service Start (local)
+
+1. Bundle install
 
   ```
   gem install bundler
   bundle install --path vendor/bundle
   ```
 
-5. Service start
+2. Start
 
   ```
   bundle exec rackup -p 9292
   ```
 
-6. Access
+## Service Start (docker)
 
-  [http://localhost:9292](http://localhost:9292)
+1. build image
 
-7. Login
+  ```
+  docker build -t ruby:2.3-alpine-spectrometer .
+  ```
 
-  The login username/passwords, those `config/database.yml` is set.
+2. Start
+
+  ```
+  docker run -it -p 9292:9292 ruby:2.3-alpine-spectrometer
+  ```
+
+
+## Access
+
+[http://localhost:9292](http://localhost:9292)
+Login username & password are set `config/database.yml`.
 
 
 ## License

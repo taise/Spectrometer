@@ -102,8 +102,5 @@ DEPENDENCIES
   sinatra-contrib (~> 1.4)
   slim
 
-RUBY VERSION
-   ruby 2.3.2p217
-
 BUNDLED WITH
    1.13.6
