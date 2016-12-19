@@ -120,8 +120,8 @@ class Spectrometer < Sinatra::Base
     conn = Redshift.connection
     redirect '/' if params[:pid].nil?
 
-    pid = conn.quote(params[:pid].to_i)
-    p Redshift.execute("CANCEL #{pid}")
+    # TODO: SQL injection prevention
+    p Redshift.execute("CANCEL #{params[:pid]}")
     redirect '/inflight_queries'
   end
 
