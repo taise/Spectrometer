@@ -75,7 +75,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (~> 4.2)
   aws-sdk (~> 2.3)
-  chartkick
+  chartkick (= 2.2.1)
   pg (~> 0.19)
   pry
   puma (~> 3.6)

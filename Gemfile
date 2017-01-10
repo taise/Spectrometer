@@ -10,7 +10,7 @@ gem 'activesupport', '~> 4.2', :require => 'active_support'
 gem 'slim'
 
 gem 'aws-sdk', '~> 2.3'
-gem 'chartkick'
+gem 'chartkick', '2.2.1'
 
 group :development do
   gem 'sinatra-contrib', '~> 1.4'
