@@ -80,12 +80,12 @@ class Spectrometer < Sinatra::Base
              .sub('__schema__', @table['schema'])
              .sub('__tablename__', @table['tablename'])
     @table_defs = Redshift.execute(sql)
-    slim 'admin/:table_info'
+    slim :'admin/table_info'
   end
 
   get '/service_class_states' do
     @service_class_states = Redshift.execute_text('service_class_states.sql')
-    slim 'admin/:service_class_state'
+    slim :'admin/service_class_state'
   end
 
   get '/stats_off' do
