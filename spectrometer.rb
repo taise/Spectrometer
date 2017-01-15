@@ -29,31 +29,10 @@ class Spectrometer < Sinatra::Base
     slim :performances
   end
 
-  get '/schema_tables' do
-    @schema_tables = Redshift.execute_text('schema_tables.sql')
-    slim :'admin/schema_tables'
-  end
-
-  get '/tables/:id' do |id|
-    # TODO: SQL injection prevention
-    sql = SQL.text('table_info.sql').sub('__table_id__', id)
-    @table = Redshift.execute(sql).first
-
-    sql = SQL.text('table_defs.sql')
-             .sub('__schema__', @table['schema'])
-             .sub('__tablename__', @table['tablename'])
-    @table_defs = Redshift.execute(sql)
-    slim 'admin/:table_info'
-  end
-
+  # Queries View
   get '/query_timelines' do
     @queries = Redshift.execute_text('query_timelines.sql')
     slim :'queries/query_timelines'
-  end
-
-  get '/service_class_states' do
-    @service_class_states = Redshift.execute_text('service_class_states.sql')
-    slim 'admin/:service_class_state'
   end
 
   get '/stats_queries' do
@@ -83,6 +62,30 @@ class Spectrometer < Sinatra::Base
                   .reduce('') { |sql, text| sql + text }
                   .gsub('\\n', "\r")
     slim :'queries/detail_query'
+  end
+
+
+  # Admin View
+  get '/schema_tables' do
+    @schema_tables = Redshift.execute_text('schema_tables.sql')
+    slim :'admin/schema_tables'
+  end
+
+  get '/tables/:id' do |id|
+    # TODO: SQL injection prevention
+    sql = SQL.text('table_info.sql').sub('__table_id__', id)
+    @table = Redshift.execute(sql).first
+
+    sql = SQL.text('table_defs.sql')
+             .sub('__schema__', @table['schema'])
+             .sub('__tablename__', @table['tablename'])
+    @table_defs = Redshift.execute(sql)
+    slim 'admin/:table_info'
+  end
+
+  get '/service_class_states' do
+    @service_class_states = Redshift.execute_text('service_class_states.sql')
+    slim 'admin/:service_class_state'
   end
 
   get '/stats_off' do
