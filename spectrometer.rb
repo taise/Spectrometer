@@ -31,7 +31,7 @@ class Spectrometer < Sinatra::Base
 
   get '/schema_tables' do
     @schema_tables = Redshift.execute_text('schema_tables.sql')
-    slim :schema_tables
+    slim :'admin/schema_tables'
   end
 
   get '/tables/:id' do |id|
@@ -43,7 +43,7 @@ class Spectrometer < Sinatra::Base
              .sub('__schema__', @table['schema'])
              .sub('__tablename__', @table['tablename'])
     @table_defs = Redshift.execute(sql)
-    slim :table_info
+    slim 'admin/:table_info'
   end
 
   get '/query_timelines' do
@@ -53,7 +53,7 @@ class Spectrometer < Sinatra::Base
 
   get '/service_class_states' do
     @service_class_states = Redshift.execute_text('service_class_states.sql')
-    slim :service_class_state
+    slim 'admin/:service_class_state'
   end
 
   get '/stats_queries' do
@@ -87,22 +87,22 @@ class Spectrometer < Sinatra::Base
 
   get '/stats_off' do
     @tables = Redshift.execute_text('stats_off.sql')
-    slim :stats_off
+    slim :'admin/stats_off'
   end
 
   get '/users' do
     @users = Redshift.execute_text('users.sql')
-    slim :users
+    slim :'admin/users'
   end
 
   get '/errors' do
     @errors = Redshift.execute_text('errors.sql')
-    slim :errors
+    slim :'admin/errors'
   end
 
   get '/stl_load_errors' do
     @errors = Redshift.execute_text('stl_load_errors.sql')
-    slim :stl_load_errors
+    slim :'admin/stl_load_errors'
   end
 
   get '/admin/vacuum_results' do
