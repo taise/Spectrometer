@@ -1,12 +1,12 @@
 doctype html
 html
   head
-    == slim :head
+    == slim :'layouts/head'
   body
-    == slim :hero
+    == slim :'layouts/hero'
     section class='section'
       div class='container'
         div class='columns'
           div class=['column', 'is-2']
-            == slim :menu
+            == slim :'layouts/menu'
           == yield

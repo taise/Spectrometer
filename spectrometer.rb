@@ -29,47 +29,26 @@ class Spectrometer < Sinatra::Base
     slim :performances
   end
 
-  get '/schema_tables' do
-    @schema_tables = Redshift.execute_text('schema_tables.sql')
-    slim :schema_tables
-  end
-
-  get '/tables/:id' do |id|
-    # TODO: SQL injection prevention
-    sql = SQL.text('table_info.sql').sub('__table_id__', id)
-    @table = Redshift.execute(sql).first
-
-    sql = SQL.text('table_defs.sql')
-             .sub('__schema__', @table['schema'])
-             .sub('__tablename__', @table['tablename'])
-    @table_defs = Redshift.execute(sql)
-    slim :table_info
-  end
-
+  # Queries View
   get '/query_timelines' do
     @queries = Redshift.execute_text('query_timelines.sql')
-    slim :query_timelines
-  end
-
-  get '/service_class_states' do
-    @service_class_states = Redshift.execute_text('service_class_states.sql')
-    slim :service_class_state
+    slim :'queries/query_timelines'
   end
 
   get '/stats_queries' do
     @queries_1m = Redshift.execute_text('stats_queries_1m.sql')
     @queries_10m = Redshift.execute_text('stats_queries_10m.sql')
-    slim :stats_queries
+    slim :'queries/stats_queries'
   end
 
   get '/inflight_queries' do
     @queries = Redshift.execute_text('inflight_queries.sql')
-    slim :inflight_queries
+    slim :'queries/inflight_queries'
   end
 
   get '/slow_queries' do
     @queries = Redshift.execute_text('slow_queries.sql')
-    slim :slow_queries
+    slim :'queries/slow_queries'
   end
 
   get '/detail_query/:id' do |xid|
@@ -82,27 +61,51 @@ class Spectrometer < Sinatra::Base
     @sql = queries.map { |q| q['text'] }
                   .reduce('') { |sql, text| sql + text }
                   .gsub('\\n', "\r")
-    slim :detail_query
+    slim :'queries/detail_query'
+  end
+
+
+  # Admin View
+  get '/schema_tables' do
+    @schema_tables = Redshift.execute_text('schema_tables.sql')
+    slim :'admin/schema_tables'
+  end
+
+  get '/tables/:id' do |id|
+    # TODO: SQL injection prevention
+    sql = SQL.text('table_info.sql').sub('__table_id__', id)
+    @table = Redshift.execute(sql).first
+
+    sql = SQL.text('table_defs.sql')
+             .sub('__schema__', @table['schema'])
+             .sub('__tablename__', @table['tablename'])
+    @table_defs = Redshift.execute(sql)
+    slim 'admin/:table_info'
+  end
+
+  get '/service_class_states' do
+    @service_class_states = Redshift.execute_text('service_class_states.sql')
+    slim 'admin/:service_class_state'
   end
 
   get '/stats_off' do
     @tables = Redshift.execute_text('stats_off.sql')
-    slim :stats_off
+    slim :'admin/stats_off'
   end
 
   get '/users' do
     @users = Redshift.execute_text('users.sql')
-    slim :users
+    slim :'admin/users'
   end
 
   get '/errors' do
     @errors = Redshift.execute_text('errors.sql')
-    slim :errors
+    slim :'admin/errors'
   end
 
   get '/stl_load_errors' do
     @errors = Redshift.execute_text('stl_load_errors.sql')
-    slim :stl_load_errors
+    slim :'admin/stl_load_errors'
   end
 
   get '/admin/vacuum_results' do

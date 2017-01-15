@@ -5,14 +5,16 @@ aside class="menu"
     li: a href='/performances' 12 hours
     li: a href='/performances?start_time=#{3.days.ago}&period=#{60 * 60}' 3 days
     li: a href='/performances?start_time=#{7.days.ago}&period=#{60 * 60 * 2}' 7 days
-  p class="menu-label" Redshift Admin View
+  p class="menu-label" Queries View
   ul class="menu-list"
     li: a href='/query_timelines' Query Timelines
-    li: a href='/schema_tables' Schema Tables
     li: a href='/stats_queries' Stats Queries
-    li: a href='/service_class_states' WLM Queue state
     li: a href='/inflight_queries' Inflight Queries
     li: a href='/slow_queries' Slow Queries
+  p class="menu-label" Redshift Admin View
+  ul class="menu-list"
+    li: a href='/schema_tables' Schema Tables
+    li: a href='/service_class_states' WLM Queue state
     li: a href='/stats_off' Stats Off Tables
     li: a href='/admin/vacuum_results' Vacuum Results
     li: a href='/admin/cluster_restart' Cluster Restart
