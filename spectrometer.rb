@@ -48,7 +48,7 @@ class Spectrometer < Sinatra::Base
 
   get '/query_timelines' do
     @queries = Redshift.execute_text('query_timelines.sql')
-    slim :query_timelines
+    slim :'queries/query_timelines'
   end
 
   get '/service_class_states' do
@@ -59,17 +59,17 @@ class Spectrometer < Sinatra::Base
   get '/stats_queries' do
     @queries_1m = Redshift.execute_text('stats_queries_1m.sql')
     @queries_10m = Redshift.execute_text('stats_queries_10m.sql')
-    slim :stats_queries
+    slim :'queries/stats_queries'
   end
 
   get '/inflight_queries' do
     @queries = Redshift.execute_text('inflight_queries.sql')
-    slim :inflight_queries
+    slim :'queries/inflight_queries'
   end
 
   get '/slow_queries' do
     @queries = Redshift.execute_text('slow_queries.sql')
-    slim :slow_queries
+    slim :'queries/slow_queries'
   end
 
   get '/detail_query/:id' do |xid|
@@ -82,7 +82,7 @@ class Spectrometer < Sinatra::Base
     @sql = queries.map { |q| q['text'] }
                   .reduce('') { |sql, text| sql + text }
                   .gsub('\\n', "\r")
-    slim :detail_query
+    slim :'queries/detail_query'
   end
 
   get '/stats_off' do
