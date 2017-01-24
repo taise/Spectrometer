@@ -1,6 +1,6 @@
 div class='column'
   h1 class=['title', 'is-3'] Schema Tables
-  table class='table'
+  table id='schema-tables' class='table'
     thead
       tr
         th database
@@ -24,3 +24,6 @@ div class='column'
           td style='text-align: right;' = schema_table['mbytes']
           td style='text-align: right;' = schema_table['rows']
           td = schema_table['owner']
+script src='//cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.0/tablesort.min.js'
+script src='//cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.0/src/sorts/tablesort.number.js'
+script new Tablesort(document.getElementById('schema-tables'))
