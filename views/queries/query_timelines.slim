@@ -8,8 +8,8 @@ div class='column'
     - rows = @queries.map do |q| \
         [ \
           q['user_name'], \
-          local_timestamp(q['exec_start_time']), \
-          local_timestamp(q['exec_end_time'] || Time.now.utc) \
+          q['exec_start_time'], \
+          q['exec_end_time'] || Time.now.utc \
         ] \
       end
     == timeline rows, height: "450px"
