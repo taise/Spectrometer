@@ -9,6 +9,7 @@ div class='column'
         th start_status
         th end_status
         th start_time
+        th end_time
         th rows_deleted
         th blocks_diff
         th process_sec
@@ -22,6 +23,7 @@ div class='column'
           td = table['start_status']
           td = table['end_status']
           td = local_timestamp(table['start_time'])
+          td = local_timestamp(table['end_time'])
           td = table['rows_deleted']
           td = table['blocks_deleted_added']
           td = table['processing_seconds']
