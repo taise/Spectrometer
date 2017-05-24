@@ -17,6 +17,7 @@ SELECT
   vac_start.status AS start_status,
   vac_end.status AS end_status,
   vac_start.eventtime AS start_time,
+  vac_end.eventtime AS end_time,
   (vac_start.rows - vac_end.rows) AS rows_deleted,
   (vac_start.blocks - vac_end.blocks) AS blocks_deleted_added,
   DATEDIFF(seconds, vac_start.eventtime, vac_end.eventtime) AS processing_seconds
@@ -26,7 +27,7 @@ FROM
     ON vac_start.userid = vac_end.userid
       AND vac_start.table_id = vac_end.table_id
       AND vac_start.xid = vac_end.xid
-      AND vac_start.status = 'Started'
+      AND LEFT(vac_start.status, 5) = 'Start'
       AND vac_end.status = 'Finished'
   INNER JOIN tables
     ON tables.table_id = vac_start.table_id
