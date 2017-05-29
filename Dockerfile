@@ -20,4 +20,5 @@ RUN set -ex \
   && bundle install --without development \
   && apk del ruby-bundle-deps
 
+EXPOSE 9292
 CMD bundle exec rackup -p 9292 -o 0.0.0.0 -E production
