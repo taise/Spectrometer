@@ -30,19 +30,13 @@ AWS Redshift monitoring web console.
   git clone https://github.com/taise/Spectrometer.git
   ```
 
-2. Set `config/database.yml`
+2. Set `.env`
 
   This user needs superuser priviledges.
 
   ```
   cd /path/to/project
-  cp config/database.yml.sample config/database.yml
-  ```
-
-3. Set `config/aws.yml`
-
-  ```
-  cp config/aws.yml.sample config/aws.yml
+  cp .env.sample .env
   ```
 
 ## Service Start (local)
