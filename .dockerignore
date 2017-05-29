@@ -1,3 +1,7 @@
 /vendor
 /.bundle
 /tmp
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
