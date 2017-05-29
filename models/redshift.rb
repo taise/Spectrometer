@@ -7,7 +7,7 @@ class Redshift
     host:     ENV['REDSHIFT_HOST'],
     port:     ENV['REDSHIFT_PORT'],
     dbname:   ENV['REDSHIFT_DBNAME'],
-    user:     ENV['REDSHIFT_UESR'],
+    user:     ENV['REDSHIFT_USER'],
     password: ENV['REDSHIFT_PASSWORD']
   }
 
