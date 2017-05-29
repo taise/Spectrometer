@@ -12,6 +12,8 @@ gem 'slim'
 gem 'aws-sdk', '~> 2.3'
 gem 'chartkick', '2.2.1'
 
+gem 'dotenv'
+
 group :development do
   gem 'sinatra-contrib', '~> 1.4'
   gem 'rubocop'

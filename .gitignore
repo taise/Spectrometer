@@ -5,6 +5,7 @@
 /config/database.yml
 /config/aws.yml
 /.ruby-version
+/.env
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

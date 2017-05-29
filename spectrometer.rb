@@ -2,6 +2,8 @@
 
 Bundler.require
 require 'active_support/core_ext'
+require 'dotenv/load'
+Dotenv.load
 
 require_relative 'lib/redshift_metric'
 require_relative 'helpers/cosmetic_helper'
@@ -123,15 +125,14 @@ class Spectrometer < Sinatra::Base
     redirect '/' if params[:pid].nil?
 
     # TODO: SQL injection prevention
-    p Redshift.execute("CANCEL #{params[:pid]}")
+    Redshift.execute("CANCEL #{params[:pid]}")
     redirect '/inflight_queries'
   end
 
   def self.new(*)
     # login user/pass == database user/pass
-    db = YAML.load_file('config/database.yml')[ENV['RACK_ENV']]
     app = Rack::Auth::Digest::MD5.new(super) do |username|
-      { db['user'] => db['password'] }[username]
+      { Redshift.user => Redshift.password }[username]
     end
     app.realm = 'Protected Area'
     app.opaque = 'secretkey'

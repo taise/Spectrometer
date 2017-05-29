@@ -1,6 +1,7 @@
 /vendor
 /.bundle
 /tmp
+.env.sample
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 .git

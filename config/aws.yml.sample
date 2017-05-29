@@ -1,4 +1,0 @@
-region: 'us-west-2'
-cluster_identifier: 'cluster_name'
-aws_access_key_id: hoge
-aws_secret_access_key: piyo
