@@ -2,12 +2,12 @@
 
 class AwsConfig
   def self.valid?
-    %i(
+    %i[
       region
       cluster_identifier
       access_key_id
       secret_access_key
-    ).map { |key| CONFIG.key? key }
+    ].map { |key| CONFIG.key? key }
       .reduce { |bool, value| bool & value }
   end
 
@@ -16,7 +16,7 @@ class AwsConfig
     cluster_identifier: ENV['CLUSTER_IDENTIFIER'],
     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-  }
+  }.freeze
   raise 'Aws config validation error' unless valid?
 
   class << self

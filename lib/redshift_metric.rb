@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'aws_config'
 
 class RedshiftMetric
@@ -34,7 +35,7 @@ class RedshiftMetric
   end
 
   def max_list(args = {})
-    args = args.merge({ statistics: ['Maximum']})
+    args = args.merge(statistics: ['Maximum'])
     get(args).map { |dp| [dp.timestamp, dp.maximum] }
   end
 
