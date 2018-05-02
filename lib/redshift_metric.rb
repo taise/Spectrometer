@@ -3,7 +3,7 @@
 require_relative 'aws_config'
 
 class RedshiftMetric
-  Aws.config.update(region: 'us-west-2', credentials: AwsConfig.credentials)
+  Aws.config.update(region: AwsConfig.region, credentials: AwsConfig.credentials)
 
   NAMESPACE = 'AWS/Redshift'
   DIMENSION_NAME = 'ClusterIdentifier'
