@@ -8,6 +8,7 @@ div class='column'
         th process
         th recordtime
         th errcode
+        th context
         th error_message
     tbody
       - @errors.each do |error|
@@ -17,4 +18,5 @@ div class='column'
           td = error['process']
           td = local_timestamp(error['recordtime'])
           td = error['errcode']
+          td = error['context']
           td = error['error_message']

@@ -4,6 +4,7 @@ SELECT
   process,
   recordtime,
   errcode,
+  TRIM(context) AS context,
   TRIM(error) AS error_message
 FROM
   pg_catalog.stl_error AS se
