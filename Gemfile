@@ -10,7 +10,7 @@ gem 'activesupport', '~> 4.2', :require => 'active_support'
 gem 'slim'
 
 gem 'aws-sdk', '~> 2.3'
-gem 'chartkick', '2.2.1'
+gem 'chartkick', '3.2.0'
 
 gem 'dotenv'
 
