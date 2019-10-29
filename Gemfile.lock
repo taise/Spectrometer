@@ -36,7 +36,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (3.6.2)
-    rack (1.6.5)
+    rack (1.6.11)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
