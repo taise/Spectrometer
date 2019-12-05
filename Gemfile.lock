@@ -35,7 +35,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.6.2)
+    puma (3.12.2)
     rack (1.6.11)
     rack-protection (1.5.5)
       rack
@@ -82,7 +82,7 @@ DEPENDENCIES
   dotenv
   pg (~> 0.19)
   pry
-  puma (~> 3.6)
+  puma (~> 3.12)
   rubocop
   sinatra (~> 1.4)
   sinatra-contrib (~> 1.4)

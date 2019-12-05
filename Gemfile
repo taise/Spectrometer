@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
-gem 'puma', '~> 3.6'
+gem 'puma', '~> 3.12'
 gem 'sinatra', '~> 1.4'
 
 gem 'pg', '~> 0.19'
