@@ -9,7 +9,7 @@ gem 'activesupport', '~> 4.2', :require => 'active_support'
 
 gem 'slim'
 
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '~> 3.0'
 gem 'chartkick', '3.3.0'
 
 gem 'dotenv'
