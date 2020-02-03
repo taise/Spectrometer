@@ -5,7 +5,7 @@ gem 'puma', '~> 3.12'
 gem 'sinatra', '~> 1.4'
 
 gem 'pg', '~> 0.19'
-gem 'activesupport', '~> 4.2', :require => 'active_support'
+gem 'activesupport', '~> 6.0', :require => 'active_support'
 
 gem 'slim'
 
