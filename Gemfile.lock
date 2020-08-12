@@ -18,7 +18,7 @@ GEM
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     backports (3.6.8)
-    chartkick (3.3.0)
+    chartkick (3.4.0)
     coderay (1.1.1)
     concurrent-ruby (1.1.6)
     dotenv (2.7.5)
@@ -82,7 +82,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (~> 4.2)
   aws-sdk (~> 2.3)
-  chartkick (= 3.3.0)
+  chartkick (= 3.4.0)
   dotenv
   pg (~> 0.19)
   pry
